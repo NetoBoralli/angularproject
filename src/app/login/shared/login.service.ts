@@ -7,15 +7,20 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LoginService {
 
     constructor(
-        private firabase: AngularFireAuth,
+        private firebase: AngularFireAuth,
         private router: Router
     ) { }
 
     doLogin(email: string, password: string) {
-        return this.firabase.auth.signInWithEmailAndPassword(email, password);
+        return this.firebase.auth.signInWithEmailAndPassword(email, password);
     }
 
-    doSignUp() {
+    doSignUp(email: string, password: string) {
+        return this.firebase.auth.createUserWithEmailAndPassword(email, password);
+    }
+
+    doUpdateOnSignUp(name: string) {
+        return this.firebase.auth.currentUser.updateProfile({displayName: name, photoURL: null});
     }
 
 }

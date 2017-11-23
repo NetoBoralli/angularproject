@@ -52,9 +52,8 @@ export class LoginComponent implements OnInit {
 		
 		this.loginService.doLogin(this.form.get('email').value, this.form.get('password').value)
 		.then( (res) => {
-			console.log(res);
             this.showProgress = false;
-            localStorage.setItem('currentUser', this.form.get('email').value);
+            localStorage.setItem('currentUser', JSON.stringify({email: res.email, username: res.displayName}));
 			this.hintLabelPassword = null;
 			this.hintLabelEmail = null;
 			this.router.navigate(['/users']);
@@ -62,7 +61,7 @@ export class LoginComponent implements OnInit {
             this.showProgress = false;
 			this.hintLabelPassword = error.code == 'auth/wrong-password' ? 'Wrong Password' : null;
 			this.hintLabelEmail = error.code == 'auth/invalid-email' || error.code == 'auth/user-not-found' ? 'User doesn\'t exists' : null;
-        })
+        });
 	}
 
 
