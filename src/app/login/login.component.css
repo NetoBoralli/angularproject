@@ -1,6 +1,11 @@
 .container {
 	display: flex;
 	justify-content: center !important;
-	margin: 45vh 0 !important;
+}
+
+.spinner {
+	position: fixed; /* or absolute */
+	top: 7%;
+	left: 45%;
 }
 

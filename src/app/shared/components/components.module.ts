@@ -12,7 +12,7 @@ import { MaterialModule } from '../material/material.module';
 		TranslateModule
   ],
   declarations: [
-		ConfirmDialogComponent
+		ConfirmDialogComponent,
 	],
 	entryComponents: [
 		ConfirmDialogComponent
