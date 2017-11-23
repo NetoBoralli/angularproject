@@ -46,9 +46,9 @@ export class HttpInterceptor extends Http {
 	}
 
 	updateUrl(url: string) {
-		if (_.startsWith(url, 'assets') || _.startsWith(url, './assets') || _.startsWith(url, environment.apiUrl))
+
 			return url;
-		return environment.apiUrl + url;
+
 	}
 
 	getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
