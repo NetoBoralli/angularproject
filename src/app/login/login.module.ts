@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { LoginComponent } from './login.component';
 import { LoginCodeComponent } from './login-code/login-code.component';
@@ -22,7 +23,8 @@ import { LoginService } from './shared/login.service';
     AppRouting,
     FormsModule,
     ReactiveFormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    TranslateModule
   ],
   declarations: [
 		LoginComponent,

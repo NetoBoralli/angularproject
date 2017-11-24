@@ -2,33 +2,33 @@
   <mat-card style="width: 30%">
     <mat-card-header>
       <mat-card-title>
-        SIGN UP
+        {{('SignUp' | translate).toUpperCase()}}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="signUp()">
         <div fxLayout="column">
           <mat-form-field [hintLabel]="hintLabelEmail">
-            <input matInput placeholder="Email" formControlName="email">
-            <mat-error *ngIf="form.get('email').hasError('required')">Required</mat-error>
-            <mat-error *ngIf="form.get('email').hasError('email')">Invalid Email</mat-error>
+            <input matInput [placeholder]="'Email' | translate" formControlName="email">
+            <mat-error *ngIf="form.get('email').hasError('required')">{{'Required' | translate}}</mat-error>
+            <mat-error *ngIf="form.get('email').hasError('email')">{{'InvalidEmail' | translate}}</mat-error>
           </mat-form-field>
           
           <mat-form-field>
-            <input matInput placeholder="Username" formControlName="username">
-            <mat-error *ngIf="form.get('username').hasError('required')">Required</mat-error>
+            <input matInput [placeholder]="'Username' | translate" formControlName="username">
+            <mat-error *ngIf="form.get('username').hasError('required')">{{'Required' | translate}}</mat-error>
           </mat-form-field>
           
           <mat-form-field>
-            <input matInput placeholder="Password" type="password" formControlName="password">
-            <mat-error *ngIf="form.get('password').hasError('required')">Required</mat-error>
+            <input matInput [placeholder]="'Pass' | translate" type="password" formControlName="password">
+            <mat-error *ngIf="form.get('password').hasError('required')">{{'Required' | translate}}</mat-error>
           </mat-form-field>
           
           <mat-form-field>
-            <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword">
-            <mat-error *ngIf="form.get('confirmPassword').hasError('required')">Required</mat-error>
+            <input matInput [placeholder]="'ConfirmPassword' | translate" type="password" formControlName="confirmPassword">
+            <mat-error *ngIf="form.get('confirmPassword').hasError('required')">{{'Required' | translate}}</mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" type="submit">Sign up</button>
+          <button mat-raised-button color="primary" type="submit">{{'SignUp' | translate}}</button>
         </div>
         <button mat-mini-fab style="margin-top: 10px;" (click)="goBack()" color="basic">
           <mat-icon>arrow_back</mat-icon>

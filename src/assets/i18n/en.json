@@ -9,5 +9,18 @@
 	"ConfirmDialog": "Confirmation Dialog",
 	"SelectAnOptionAndOpendTheConsole": "Select an option and open console",
 	"Ok": "Ok",
-	"ChangeLanguageTo": "Change language to:"
+	"ChangeLanguageTo": "Change language to:",
+	"WrongPass": "Wrong password",
+	"WrongEmail": "User doesn't exists",
+	"ExistentEmail": "Email already in use",
+	"Pass": "Password",
+	"Email": "Email",
+	"Username": "Username",
+	"ConfirmPassword": "Confirm Password",
+	"Code": "The Code",
+	"Required": "Required",
+	"InvalidEmail": "Invalid Email",
+	"SignUp": "Sign Up",
+	"SignInWithCode": "Sign in with code",
+	"Send": "Send"
 }

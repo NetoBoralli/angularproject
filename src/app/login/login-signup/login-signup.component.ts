@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 import { LoginService } from './../shared/login.service';
 
@@ -19,7 +20,8 @@ export class LoginSignupComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -56,7 +58,8 @@ export class LoginSignupComponent implements OnInit {
       .catch((err) => {
         this.showProgress = false;
         console.log(err.code);
-        this.hintLabelEmail = err.code == 'auth/email-already-in-use' ? 'Email already in use' : null;
+        if(err.code == 'auth/email-already-in-use')
+          this.translate.get('ExistentEmail').subscribe((val) => this.hintLabelEmail = val);
       });
   }
 

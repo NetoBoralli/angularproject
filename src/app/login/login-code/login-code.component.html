@@ -2,19 +2,19 @@
   <mat-card style="width: 30%">
     <mat-card-header>
       <mat-card-title>
-        USE CODE
+        {{('SignInWithCode' | translate).toUpperCase()}}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form>
         <div fxLayout="column">
           <mat-form-field>
-            <input matInput placeholder="The Code" type="text">
+            <input matInput [placeholder]="'Code' | translate" type="text">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Name (optional)" type="text">
+            <input matInput [placeholder]="'Username' | translate" type="text">
           </mat-form-field>
-          <button mat-raised-button color="primary">Send</button>
+          <button mat-raised-button color="primary">{{'Send' | translate}}</button>
         </div>
         <button mat-mini-fab style="margin-top: 10px;" (click)="goBack()" color="basic">
             <mat-icon>arrow_back</mat-icon>

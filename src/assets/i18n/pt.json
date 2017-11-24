@@ -9,5 +9,18 @@
 	"ConfirmDialog": "Caixa de Confirmação",
 	"SelectAnOptionAndOpendTheConsole": "Selecione uma opção e abra o console",
 	"Ok": "Ok",
-	"ChangeLanguageTo": "Mudar idioma para:"
+	"ChangeLanguageTo": "Mudar idioma para:",
+	"WrongPass": "Senha incorreta",
+	"WrongEmail": "Usuário não existe",
+	"ExistentEmail": "Email ja cadastrado",
+	"Pass": "Senha",
+	"Email": "O email",
+	"Username": "Usuário",
+	"ConfirmPassword": "Confirme a senha",
+	"Code": "O Código",
+	"Required": "Requerido",
+	"InvalidEmail": "Email invalido",
+	"SignUp": "Cadastre-se",
+	"SignInWithCode": "Entrar com código",
+	"Send": "Enviar"
 }

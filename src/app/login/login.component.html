@@ -5,26 +5,26 @@
 	<mat-card style="width: 30%">
 		<mat-card-header>
 			<mat-card-title>
-				LOGIN
+				{{('Login' | translate).toUpperCase()}}
 			</mat-card-title>
 		</mat-card-header>
 		<mat-card-content>
 			<form [formGroup]="form" (ngSubmit)="login()">
 				<div fxLayout="column"  fxLayoutGap="5px">
 					<mat-form-field [hintLabel]="hintLabelEmail">
-						<input matInput placeholder="Email" formControlName="email">
-						<mat-error *ngIf="form.get('email').hasError('required')">Required</mat-error>
-						<mat-error *ngIf="form.get('email').hasError('email')">Invalid Email</mat-error>
+						<input matInput [placeholder]="'Email' | translate" formControlName="email">
+						<mat-error *ngIf="form.get('email').hasError('required')">{{'Required' | translate}}</mat-error>
+						<mat-error *ngIf="form.get('email').hasError('email')">{{'InvalidEmail' | translate}}</mat-error>
 					</mat-form-field>
 					<mat-form-field [hintLabel]="hintLabelPassword">
-						<input matInput placeholder="Password" type="password" formControlName="password">
-						<mat-error *ngIf="form.get('password').hasError('required')">Required</mat-error>
+						<input matInput [placeholder]="'Pass' | translate" type="password" formControlName="password">
+						<mat-error *ngIf="form.get('password').hasError('required')">{{'Required' | translate}}</mat-error>
 					</mat-form-field>
 					<div fxLayout="row">
-						<button mat-button color="primary" (click)="signUp()" style="width: 50%;">Sign up</button>
-						<button mat-raised-button color="primary" type="submit" style="width: 50%;">Login</button>
+						<button mat-button color="primary" (click)="signUp()" style="width: 50%;">{{'SignUp' | translate}}</button>
+						<button mat-raised-button color="primary" type="submit" style="width: 50%;">{{'Login' | translate}}</button>
 					</div>
-					<button mat-raised-button (click)="changeRoute()">Use Code</button>
+					<button mat-raised-button (click)="changeRoute()">{{'SignInWithCode' | translate}}</button>
 				</div>
 			</form>
 		</mat-card-content>
