@@ -13,10 +13,13 @@ import { LoginService } from './../shared/login.service';
 export class LoginSignupComponent implements OnInit {
 
   form: FormGroup;
-  email: string;
-  password: string;
+  // email: string;
+  // password: string;
+  // username: string;
+  // confirmPassword: string;
   showProgress: boolean = false;
   hintLabelEmail: string = null;
+  notEqualPass:string = null;
 
   constructor(
     private router: Router,
@@ -28,8 +31,8 @@ export class LoginSignupComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl(null, Validators.compose([Validators.required, Validators.email])),
       username: new FormControl(null, Validators.compose([Validators.required])),
-      password: new FormControl(null, Validators.compose([Validators.required])),
-      confirmPassword: new FormControl(null, Validators.compose([Validators.required]))
+      password: new FormControl(null, Validators.compose([Validators.required, Validators.minLength(6)])),
+      confirmPassword: new FormControl(null, Validators.compose([Validators.required, Validators.minLength(6)]))
     })
   }
 
@@ -39,14 +42,19 @@ export class LoginSignupComponent implements OnInit {
 
   signUp() {
     if (!this.form.valid) return null;
+    if(this.form.get('password').value != this.form.get('confirmPassword').value){
+      this.translate.get('NotEqualPass').subscribe((val) => this.notEqualPass = val);
+      return null;
+    }
 
     this.showProgress = true;
 
     this.loginService.doSignUp(this.form.get('email').value, this.form.get('password').value)
       .then((res) => {
+        let uid = res.uid;
         this.loginService.doUpdateOnSignUp(this.form.get('username').value)
           .then((res) => {
-            localStorage.setItem('currentUser', JSON.stringify({email: this.form.get('email').value, username: this.form.get('username').value}));
+            localStorage.setItem('currentUser', JSON.stringify({email: this.form.get('email').value, username: this.form.get('username').value, uid: uid}));
             this.hintLabelEmail = null;
             this.router.navigate(['/users']);
           })

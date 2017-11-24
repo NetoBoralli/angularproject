@@ -22,5 +22,7 @@
 	"InvalidEmail": "Invalid Email",
 	"SignUp": "Sign Up",
 	"SignInWithCode": "Sign in with code",
-	"Send": "Send"
+	"Send": "Send",
+	"NotEqualPass": "Passwords don't match",
+	"MinLength": "Password must be at least six characters"
 }

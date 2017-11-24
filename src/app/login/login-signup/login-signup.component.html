@@ -19,14 +19,16 @@
             <mat-error *ngIf="form.get('username').hasError('required')">{{'Required' | translate}}</mat-error>
           </mat-form-field>
           
-          <mat-form-field>
+          <mat-form-field [hintLabel]="notEqualPass"> 
             <input matInput [placeholder]="'Pass' | translate" type="password" formControlName="password">
             <mat-error *ngIf="form.get('password').hasError('required')">{{'Required' | translate}}</mat-error>
+            <mat-error *ngIf="form.get('password').hasError('minlength')">{{'MinLength' | translate}}</mat-error>
           </mat-form-field>
           
-          <mat-form-field>
+          <mat-form-field [hintLabel]="notEqualPass">
             <input matInput [placeholder]="'ConfirmPassword' | translate" type="password" formControlName="confirmPassword">
             <mat-error *ngIf="form.get('confirmPassword').hasError('required')">{{'Required' | translate}}</mat-error>
+            <mat-error *ngIf="form.get('confirmPassword').hasError('minlength')">{{'MinLength' | translate}}</mat-error>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit">{{'SignUp' | translate}}</button>
         </div>

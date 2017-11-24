@@ -22,5 +22,7 @@
 	"InvalidEmail": "Email invalido",
 	"SignUp": "Cadastre-se",
 	"SignInWithCode": "Entrar com código",
-	"Send": "Enviar"
+	"Send": "Enviar",
+	"NotEqualPass": "Senhas não combinam",
+	"MinLength": "A senha deve ter pelo menos seis caracteres"
 }

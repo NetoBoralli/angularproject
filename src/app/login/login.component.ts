@@ -52,9 +52,9 @@ export class LoginComponent implements OnInit {
 		
 		this.loginService.doLogin(this.form.get('email').value, this.form.get('password').value)
 		.then( (res) => {
-			console.log(res);
+			console.log(res.uid);
             this.showProgress = false;
-            localStorage.setItem('currentUser', JSON.stringify({email: res.email, username: res.displayName}));
+            localStorage.setItem('currentUser', JSON.stringify({email: res.email, username: res.displayName, uid: res.uid}));
 			this.hintLabelPassword = null;
 			this.hintLabelEmail = null;
 			this.router.navigate(['/users']);
