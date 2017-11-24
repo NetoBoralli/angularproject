@@ -1,6 +1,5 @@
 <div class="container">
   <mat-card style="width: 30%">
-    <button mat-button style="margin-bottom: 5px;" (click)="goBack()">back</button>
     <mat-card-header>
       <mat-card-title>
         SIGN UP
@@ -14,23 +13,26 @@
             <mat-error *ngIf="form.get('email').hasError('required')">Required</mat-error>
             <mat-error *ngIf="form.get('email').hasError('email')">Invalid Email</mat-error>
           </mat-form-field>
-
+          
           <mat-form-field>
             <input matInput placeholder="Username" formControlName="username">
             <mat-error *ngIf="form.get('username').hasError('required')">Required</mat-error>
           </mat-form-field>
-
+          
           <mat-form-field>
             <input matInput placeholder="Password" type="password" formControlName="password">
             <mat-error *ngIf="form.get('password').hasError('required')">Required</mat-error>
           </mat-form-field>
-
+          
           <mat-form-field>
             <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword">
             <mat-error *ngIf="form.get('confirmPassword').hasError('required')">Required</mat-error>
           </mat-form-field>
           <button mat-raised-button color="primary" type="submit">Sign up</button>
         </div>
+        <button mat-mini-fab style="margin-top: 10px;" (click)="goBack()" color="basic">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
       </form>
     </mat-card-content>
   </mat-card>
