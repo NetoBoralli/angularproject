@@ -1,13 +1,14 @@
 <div class="container">
   <mat-card style="width: 30%">
-      <button mat-button style="margin-bottom: 5px;" (click)= "goBack()">back</button>
-      <mat-card-header>
-        <mat-card-title>
-          USE CODE
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form>
+    <button mat-button style="margin-bottom: 5px;" (click)="goBack()">back</button>
+    <mat-card-header>
+      <mat-card-title>
+        USE CODE
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form>
+        <div fxLayout="column">
           <mat-form-field>
             <input matInput placeholder="The Code" type="text">
           </mat-form-field>
@@ -15,7 +16,8 @@
             <input matInput placeholder="Name (optional)" type="text">
           </mat-form-field>
           <button mat-raised-button color="primary">Send</button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

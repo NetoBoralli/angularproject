@@ -8,6 +8,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -45,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		SharedModule,
 		UsersModule,
 		FormsModule,
+		FlexLayoutModule,
 		LoginModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		TranslateModule.forRoot({
