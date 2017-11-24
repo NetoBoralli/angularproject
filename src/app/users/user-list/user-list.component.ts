@@ -1,8 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Rx';
 
 import { DialogsService } from '../../shared/services/dialog/dialog.service';
 import { UsersService } from '../shared/users.service';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
 	selector: 'app-user-list',
@@ -10,43 +13,61 @@ import { UsersService } from '../shared/users.service';
 	styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit, OnDestroy {
-
-	users: any[] = [];
-	subscribe1: Subscription;
+	colRef;
+	items;
+	form: FormGroup;
+	// users: any[] = [];
+	// subscribe1: Subscription;
 
 	constructor(
 		private usersService: UsersService,
-		private dialogService: DialogsService
+		private dialogService: DialogsService,
+		private db: AngularFireDatabase,
+		private router: Router
 	) { }
 
 	ngOnInit() {
-		this.fillUsers();
+		// this.fillUsers();
+		this.usersService.getItens().subscribe(changes => {
+			this.items = changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
+		});
+		this.form = new FormGroup({
+			name: new FormControl(null),
+			idade: new FormControl(null)
+		})
 	}
 
 	ngOnDestroy() {
-		if (this.subscribe1) this.subscribe1.unsubscribe();
+		// if (this.subscribe1) this.subscribe1.unsubscribe();
 	}
 
-	getUserData(username: string) {
-		this.subscribe1 = this.usersService.get(username).subscribe((data) => {
-			this.users.push(data);
-		}, (err) => {
-			console.log('Ocorreu um erro na sua solicitação');
-		});
+	insertBoneco(){
+		this.usersService.setItens(this.form.get('name').value, this.form.get('idade').value).then( data => {
+			console.log(data);
+			// this.router.navigate(['/users']);
+		})
 	}
 
-	addUser() {
-		this.dialogService.openUserDialog().subscribe((res) => {
-			if (res) {
-				this.getUserData(res.username);
-			}
-		});
-	}
+	// getUserData(username: string) {
+	// 	this.subscribe1 = this.usersService.get(username).subscribe((data) => {
+	// 		this.users.push(data);
+	// 	}, (err) => {
+	// 		console.log('Ocorreu um erro na sua solicitação');
+	// 	});
+	// }
 
-	fillUsers() {
-		this.getUserData('mvmjacobs');
-		this.getUserData('chpsousa');
-		this.getUserData('engelgabriel');
-		this.getUserData('young');
-	}
+	// addUser() {
+	// 	this.dialogService.openUserDialog().subscribe((res) => {
+	// 		if (res) {
+	// 			this.getUserData(res.username);
+	// 		}
+	// 	});
+	// }
+
+	// fillUsers() {
+	// 	this.getUserData('mvmjacobs');
+	// 	this.getUserData('chpsousa');
+	// 	this.getUserData('engelgabriel');
+	// 	this.getUserData('young');
+	// }
 }

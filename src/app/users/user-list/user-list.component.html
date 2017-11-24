@@ -1,7 +1,5 @@
-<div>
-	<a mat-fab (click)="addUser()">
-		<mat-icon>add</mat-icon>
-	</a>
+<!-- <div>
+	
 
 	<div class="container">
 		<mat-card class="card" *ngFor="let user of users">
@@ -18,4 +16,34 @@
 		</mat-card>
 	</div>
 
-</div>
+</div> -->
+<!-- <a mat-fab (click)="insertBoneco()">
+	<mat-icon>add</mat-icon>
+</a> -->
+
+<ul *ngFor="let item of items">
+	<li>
+		{{ item.key}}
+	</li>
+	<ul>
+		<li>
+			{{item.name}}
+		</li>
+		<li>
+			{{item.idade}}
+		</li>
+	</ul>
+</ul>
+
+<form [formGroup]="form" (ngSubmit)="insertBoneco()">
+	<div fxLayout="column">
+		<mat-form-field>
+			<input matInput placeholder="Name" formControlName="name">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput placeholder="Idade" formControlName="idade">
+		</mat-form-field>
+		<button mat-raised-button color="primary" type="submit">Go</button>
+	</div>
+</form>
