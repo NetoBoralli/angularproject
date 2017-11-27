@@ -10,6 +10,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 
 import { LoginAuthGuard } from './shared/services/auth/auth-login.guard';
 import { AppAuthGuard } from './shared/services/auth/auth-app.guard';
+import { RoomListComponent } from './room/room-list/room-list.component';
 
 const appRoutes: Routes = [
 	{ path: 'login', canActivate: [LoginAuthGuard] , children: [
@@ -18,7 +19,7 @@ const appRoutes: Routes = [
 		{ path: 'signup', component: LoginSignupComponent}
 	]},
 	{ path: '', component: LayoutComponent, canActivate: [AppAuthGuard], children: [
-		{ path: 'users', component: UserListComponent }
+		{ path: 'rooms', component: RoomListComponent }
 	] },
 
 	// page not found redirect to initial page

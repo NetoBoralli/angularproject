@@ -26,6 +26,7 @@ import { LoginSignupComponent } from './login/login-signup/login-signup.componen
 
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+import { RoomModule } from './room/room.module';
 
 export function HttpInterceptorFactory(backend: XHRBackend, options: RequestOptions, router: Router, injector: Injector) {
 	return new HttpInterceptor(backend, options, router, injector);
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 		FormsModule,
 		FlexLayoutModule,
 		LoginModule,
+		RoomModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		TranslateModule.forRoot({
 			loader: {
