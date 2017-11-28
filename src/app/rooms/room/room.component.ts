@@ -15,6 +15,7 @@ export class RoomComponent implements OnInit, OnDestroy {
   inscription: Subscription;
   key;
   room: any = {};
+  questions;
 
   constructor(
     private router: Router,
@@ -25,9 +26,14 @@ export class RoomComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.inscription = this.aroute.params.subscribe( (params: any) =>{
       this.key = params['key'];
+
       this.roomsService.getRoomByKey(this.key).subscribe( (data)=> {
         this.room = data;
-      })
+      });
+
+      this.roomsService.getQuestions(this.key).subscribe( (data) => {
+        this.questions = data.map(c => ({ key: c.payload.key, ...c.payload.val()}));
+      });
     })
   }
 
@@ -35,6 +41,15 @@ export class RoomComponent implements OnInit, OnDestroy {
     sidenav.open();
     this.router.navigate(['rooms/'+this.key+'/questions']);
     localStorage.setItem('key', this.key);
+  }
+
+  closeSide(sidenav) {
+    sidenav.close();
+    this.router.navigate(['rooms/'+this.key]);
+  }
+
+  questionDetail(qkey: string){
+    this.router.navigate(['rooms/'+this.key+'/question/'+qkey]);
   }
 
   ngOnDestroy(){

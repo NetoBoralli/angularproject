@@ -1,20 +1,34 @@
 <mat-sidenav-container style="height: 100%;">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2">
-    <a mat-mini-fab class="rm-q" (click)="sidenav.close()">
+    <a mat-icon-button class="cl-q" (click)="closeSide(sidenav)" style="margin: 5px;">
       <mat-icon>close</mat-icon>
     </a>
     <router-outlet></router-outlet>
   </mat-sidenav>
+  <mat-sidenav-content class="hide-scroll">
 
-  <h2>
-    {{room.name}}
-  </h2>
-  <h2>
-    {{room.owner}}
-  </h2>
+    <h2>
+      {{room.name}}
+    </h2>
+    <h2>
+      {{room.owner}}
+    </h2>
+
+    <div fxLayout="row" fxLayoutWrap>
+      <mat-card class="card" *ngFor="let quest of questions">
+        <button mat-button style="width: 100%" (click)="questionDetail(quest.key)">
+          <mat-card-header>
+            <mat-card-title>
+              {{quest.question}}
+            </mat-card-title>
+          </mat-card-header>
+        </button>
+      </mat-card>
+    </div>
 
 
-  <button mat-fab class="add-q" (click)="action(sidenav)">
-    <mat-icon>add</mat-icon>
-  </button>
+    <button mat-fab class="add-q" (click)="action(sidenav)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-sidenav-content>
 </mat-sidenav-container>
