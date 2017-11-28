@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Rx';
 
 import { RoomsService } from './../shared/rooms.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-room',
@@ -12,6 +13,7 @@ import { RoomsService } from './../shared/rooms.service';
 })
 export class RoomComponent implements OnInit, OnDestroy {
   
+  @ViewChild('sidenav') sidenav: MatSidenav;
   inscription: Subscription;
   key;
   room: any = {};
@@ -37,14 +39,14 @@ export class RoomComponent implements OnInit, OnDestroy {
     })
   }
 
-  action(sidenav){
-    sidenav.open();
+  action(){
+    this.sidenav.open();
     this.router.navigate(['rooms/'+this.key+'/questions']);
     localStorage.setItem('key', this.key);
   }
 
-  closeSide(sidenav) {
-    sidenav.close();
+  closeSide() {
+    this.sidenav.close();
     this.router.navigate(['rooms/'+this.key]);
   }
 

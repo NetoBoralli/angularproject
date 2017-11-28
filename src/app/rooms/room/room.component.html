@@ -1,6 +1,6 @@
 <mat-sidenav-container style="height: 100%;">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2">
-    <a mat-icon-button class="cl-q" (click)="closeSide(sidenav)" style="margin: 5px;">
+    <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
       <mat-icon>close</mat-icon>
     </a>
     <router-outlet></router-outlet>
@@ -27,7 +27,7 @@
     </div>
 
 
-    <button mat-fab class="add-q" (click)="action(sidenav)">
+    <button mat-fab class="add-q" (click)="action()">
       <mat-icon>add</mat-icon>
     </button>
   </mat-sidenav-content>

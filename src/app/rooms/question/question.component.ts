@@ -1,30 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
 import { RoomsService } from '../shared/rooms.service';
+import { RoomComponent } from '../room/room.component';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent implements OnInit {
-
+export class QuestionComponent implements OnInit, OnDestroy {
+  
   inscription: Subscription
   form: FormGroup
   key: string;
 
   constructor(
     private roomsService: RoomsService,
-    private aroute: ActivatedRoute
+    private aroute: ActivatedRoute,
+    private roomComponent: RoomComponent
   ) { }
 
   ngOnInit() {
     this.form = new FormGroup({
       question: new FormControl(null)
     });
+  }
+
+  ngOnDestroy() {
+    this.roomComponent.sidenav.close();
   }
 
   insertQuestion() {
