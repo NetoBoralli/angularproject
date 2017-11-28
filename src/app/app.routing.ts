@@ -1,3 +1,4 @@
+import { QuestionDetailComponent } from './rooms/question-detail/question-detail.component';
 import { RoomComponent } from './rooms/room/room.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,7 +13,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { LoginAuthGuard } from './shared/services/auth/auth-login.guard';
 import { AppAuthGuard } from './shared/services/auth/auth-app.guard';
 import { RoomListComponent } from './rooms/room-list/room-list.component';
-import { QuestionsComponent } from './rooms/questions/questions.component';
+import { QuestionComponent } from './rooms/question/question.component';
 
 const appRoutes: Routes = [
 	{ path: 'login', canActivate: [LoginAuthGuard] , children: [
@@ -23,7 +24,10 @@ const appRoutes: Routes = [
 	{ path: '', component: LayoutComponent, canActivate: [AppAuthGuard], children: [
 		{ path: 'rooms', component: RoomListComponent, children: [
 			{ path: ':key', component: RoomComponent, children: [
-				{ path: 'questions', component: QuestionsComponent}
+				{ path: 'questions', component: QuestionComponent}
+			]}, 
+			{ path: ':key/question', children: [
+				{ path: ':qkey', component: QuestionDetailComponent}
 			]},
 		]}
 	] },

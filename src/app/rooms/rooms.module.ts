@@ -11,7 +11,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomsService } from './shared/rooms.service';
 import { RoomComponent } from './room/room.component';
-import { QuestionsComponent } from './questions/questions.component';
+import { QuestionComponent } from './question/question.component';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { QuestionsComponent } from './questions/questions.component';
   declarations: [
     RoomListComponent,
     RoomComponent,
-    QuestionsComponent
+    QuestionComponent,
+    QuestionDetailComponent
   ],
   providers: [
     RoomsService
