@@ -1,0 +1,19 @@
+.add-q {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1;
+  }
+
+.rm-q {
+    /* position: fixed;
+    left: 20px;
+    top: 20px; */
+    background-color: red;
+}
+
+
+  /* .secondary-sidenav {
+    position: fixed !important;
+    top: 50px!important;
+  } */

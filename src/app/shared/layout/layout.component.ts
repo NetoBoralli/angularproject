@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { DialogsService } from '../services/dialog/dialog.service';
+import { RoomListComponent } from '../../rooms/room-list/room-list.component';
 
 @Component({
 	selector: 'app-layout',
@@ -35,8 +36,8 @@ export class LayoutComponent implements OnInit {
 		});
 	}
 
-	viewUsers() {
-		this.router.navigate(['users']);
+	viewRooms() {
+		this.router.navigate(['rooms']);
 	}
 
 	changeLanguage() {

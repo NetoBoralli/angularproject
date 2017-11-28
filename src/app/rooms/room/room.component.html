@@ -1,0 +1,20 @@
+<mat-sidenav-container style="height: 100%;">
+  <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2">
+    <a mat-mini-fab class="rm-q" (click)="sidenav.close()">
+      <mat-icon>close</mat-icon>
+    </a>
+    <router-outlet></router-outlet>
+  </mat-sidenav>
+
+  <h2>
+    {{room.name}}
+  </h2>
+  <h2>
+    {{room.owner}}
+  </h2>
+
+
+  <button mat-fab class="add-q" (click)="action(sidenav)">
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-sidenav-container>
