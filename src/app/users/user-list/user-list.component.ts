@@ -32,8 +32,7 @@ export class UserListComponent implements OnInit, OnDestroy {
 			this.items = changes.map(c => ({ key: c.payload.key, ...c.payload.val()}));
 		});
 		this.form = new FormGroup({
-			name: new FormControl(null),
-			idade: new FormControl(null)
+			name: new FormControl(null)
 		})
 	}
 
@@ -42,7 +41,8 @@ export class UserListComponent implements OnInit, OnDestroy {
 	}
 
 	insertBoneco(){
-		this.usersService.setItens(this.form.get('name').value, this.form.get('idade').value).then( data => {
+		let owner = JSON.parse(localStorage.getItem('currentUser'));
+		this.usersService.setItens(this.form.get('name').value, owner.username).then( data => {
 			console.log(data);
 			// this.router.navigate(['/users']);
 		})

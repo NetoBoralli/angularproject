@@ -23,14 +23,11 @@
 
 <ul *ngFor="let item of items">
 	<li>
-		{{ item.key}}
+		{{item.name}}
 	</li>
 	<ul>
 		<li>
-			{{item.name}}
-		</li>
-		<li>
-			{{item.idade}}
+			{{item.owner}}
 		</li>
 	</ul>
 </ul>
@@ -39,10 +36,6 @@
 	<div fxLayout="column">
 		<mat-form-field>
 			<input matInput placeholder="Name" formControlName="name">
-		</mat-form-field>
-
-		<mat-form-field>
-			<input matInput placeholder="Idade" formControlName="idade">
 		</mat-form-field>
 		<button mat-raised-button color="primary" type="submit">Go</button>
 	</div>

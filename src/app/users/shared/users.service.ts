@@ -15,13 +15,13 @@ export class UsersService {
 	) { }
 
 	getItens() {
-		return this.db.list('itens').snapshotChanges();
+		return this.db.list('rooms').snapshotChanges();
 	}
 	
-	setItens(name: string, idade: number){
-		return this.db.list('itens').push({
+	setItens(name: string, owner: string){
+		return this.db.list('rooms').push({
 			name: name,
-			idade: idade
+			owner: owner
 		})
 	}
 
