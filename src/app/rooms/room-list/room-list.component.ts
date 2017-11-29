@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 
 import { RoomsService } from '../shared/rooms.service';
+import { KeyService } from './../../shared/services/helpers/key.service';
 
 @Component({
   selector: 'app-room-list',
@@ -17,7 +18,8 @@ export class RoomListComponent implements OnInit {
   
   constructor(
     private roomService:RoomsService,
-    private router: Router
+    private router: Router,
+    private keyService: KeyService
   ) { }
 
   ngOnInit() {
@@ -30,9 +32,11 @@ export class RoomListComponent implements OnInit {
   }
 
   insertRoom(){
-		let owner = JSON.parse(localStorage.getItem('currentUser'));
-		this.roomService.setRooms(this.form.get('name').value, owner.username).then( data => {
-			this.form.reset();
+    let owner = JSON.parse(localStorage.getItem('currentUser'));
+    let code = this.keyService.generateId(6);
+		this.roomService.setRooms(this.form.get('name').value, owner.username, code).then( data => {
+      this.form.reset();
+      this.roomService.setCode(code);
 		})
   }
   

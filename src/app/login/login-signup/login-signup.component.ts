@@ -56,7 +56,7 @@ export class LoginSignupComponent implements OnInit {
           .then((res) => {
             localStorage.setItem('currentUser', JSON.stringify({email: this.form.get('email').value, username: this.form.get('username').value, uid: uid}));
             this.hintLabelEmail = null;
-            this.router.navigate(['/users']);
+            this.router.navigate(['/rooms']);
           })
           .catch((err) => {
             console.log(err.code);

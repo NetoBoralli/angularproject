@@ -27,6 +27,7 @@ import { LoginSignupComponent } from './login/login-signup/login-signup.componen
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { RoomsModule } from './rooms/rooms.module';
+import { KeyService } from './shared/services/helpers/key.service';
 
 export function HttpInterceptorFactory(backend: XHRBackend, options: RequestOptions, router: Router, injector: Injector) {
 	return new HttpInterceptor(backend, options, router, injector);
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 	],
 	providers: [
 		{ provide: Http, useFactory: HttpInterceptorFactory, deps: [XHRBackend, RequestOptions, Router, Injector] },
+		KeyService
 	],
 	bootstrap: [
 		AppComponent

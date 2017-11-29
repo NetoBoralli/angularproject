@@ -6,15 +6,16 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form>
+      <form [formGroup]="form" (ngSubmit)="signInAnonymous()">
         <div fxLayout="column">
-          <mat-form-field>
-            <input matInput [placeholder]="'Code' | translate" type="text">
+          <mat-form-field [hintLabel]="hintLabelCode">
+            <input matInput [placeholder]="'Code' | translate" formControlName="code">
+            <mat-error *ngIf="form.get('code').hasError('required')">{{'Required' | translate}}</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput [placeholder]="'Username' | translate" type="text">
+            <input matInput [placeholder]="'Username' | translate" formControlName="username">
           </mat-form-field>
-          <button mat-raised-button color="primary">{{'Send' | translate}}</button>
+          <button mat-raised-button color="primary" type="submit">{{'Send' | translate}}</button>
         </div>
         <button mat-mini-fab style="margin-top: 10px;" (click)="goBack()" color="basic">
             <mat-icon>arrow_back</mat-icon>

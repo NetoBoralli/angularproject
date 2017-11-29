@@ -20,13 +20,20 @@ export class RoomsService {
     return this.db.list('rooms/'+key+'/questions/'+qkey+'/answers').snapshotChanges();
   }
 
-  setRooms(name: string, owner: string) {
+  setRooms(name: string, owner: string, code: string) {
     return this.db.list('rooms').push({
       name: name,
-      owner: owner
+      owner: owner,
+      code: code
     })
   }
   
+  setCode(code: string) {
+    return this.db.list('codes').push({
+      code: code 
+    })
+  }
+
   setQuestion(key: string, question: string, owner: string) {
     return this.db.list('rooms/' + key + '/questions').push({
       question: question,
@@ -54,6 +61,10 @@ export class RoomsService {
 
   getQuestionByKey(key: string, qkey: string) {
     return this.db.object('rooms/'+key+'/questions/'+qkey).valueChanges();
+  }
+
+  getRoomByCode(code: string) {
+    return this.db.list('rooms', ref => ref.orderByChild('code').equalTo(code)).snapshotChanges();
   }
 
 }

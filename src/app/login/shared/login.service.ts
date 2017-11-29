@@ -23,4 +23,8 @@ export class LoginService {
         return this.firebase.auth.currentUser.updateProfile({displayName: name, photoURL: null});
     }
 
+    doAnonymousLogin(){
+        return this.firebase.auth.signInAnonymously();
+    }
+
 }

@@ -24,5 +24,6 @@
 	"SignInWithCode": "Sign in with code",
 	"Send": "Send",
 	"NotEqualPass": "Passwords don't match",
-	"MinLength": "Password must be at least six characters"
+	"MinLength": "Password must be at least six characters",
+	"NoCode": "No rooms with this code "
 }

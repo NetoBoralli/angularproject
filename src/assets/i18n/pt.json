@@ -24,5 +24,6 @@
 	"SignInWithCode": "Entrar com código",
 	"Send": "Enviar",
 	"NotEqualPass": "Senhas não combinam",
-	"MinLength": "A senha deve ter pelo menos seis caracteres"
+	"MinLength": "A senha deve ter pelo menos seis caracteres",
+	"NoCode": "Sem salas com esse código"
 }
