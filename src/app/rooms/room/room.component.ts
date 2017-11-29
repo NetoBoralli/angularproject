@@ -42,7 +42,6 @@ export class RoomComponent implements OnInit, OnDestroy {
   action(){
     this.sidenav.open();
     this.router.navigate(['rooms/'+this.key+'/questions']);
-    localStorage.setItem('key', this.key);
   }
 
   closeSide() {

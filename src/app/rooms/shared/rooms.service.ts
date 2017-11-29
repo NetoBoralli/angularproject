@@ -16,6 +16,10 @@ export class RoomsService {
     return this.db.list('rooms/'+key+'/questions').snapshotChanges();
   }
 
+  getAnswers(key: string, qkey: string){
+    return this.db.list('rooms/'+key+'/questions/'+qkey+'/answers').snapshotChanges();
+  }
+
   setRooms(name: string, owner: string) {
     return this.db.list('rooms').push({
       name: name,
@@ -27,6 +31,20 @@ export class RoomsService {
     return this.db.list('rooms/' + key + '/questions').push({
       question: question,
       owner: owner
+    });
+  }
+
+  setAnswer(key: string, qkey: string, answer: string, owner: string) {
+    return this.db.list('rooms/'+key+'/questions/'+qkey+'/answers').push({
+      answer: answer,
+      owner: owner,
+      tag: ""
+    })
+  }
+
+  setTag(key: string, qkey: string, akey: string, tag: string) {
+    return this.db.object('rooms/'+key+'/questions/'+qkey+'/answers/'+akey).update({
+      tag: tag
     });
   }
 

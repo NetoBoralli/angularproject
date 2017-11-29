@@ -24,6 +24,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.inscription = this.aroute.params.subscribe((params: any) => {
+      this.key = this.roomComponent.key;
+    });
+
     this.form = new FormGroup({
       question: new FormControl(null)
     });
@@ -35,7 +39,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   insertQuestion() {
     let owner = JSON.parse(localStorage.getItem('currentUser'));
-    this.key = localStorage.getItem('key');
     this.roomsService.setQuestion(this.key, this.form.get('question').value, owner.username).then(data => {
       console.log(data);
     })
