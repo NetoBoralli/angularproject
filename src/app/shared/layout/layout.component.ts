@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { DialogsService } from '../services/dialog/dialog.service';
 import { RoomListComponent } from '../../rooms/room-list/room-list.component';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
 	selector: 'app-layout',
@@ -11,6 +12,8 @@ import { RoomListComponent } from '../../rooms/room-list/room-list.component';
 	styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+
+	isAnonymous: boolean;
 
 	constructor(
 		private router: Router,

@@ -1,27 +1,48 @@
 <mat-sidenav-container style="height: 100%;">
   <mat-sidenav #sidenav mode="side" opened="true">
 
+    <div *ngIf="!appComponent.isAnonymous">
+      <mat-card style="margin: 8px">
+        <mat-card-header fxLayoutAlign="center">
+          <mat-card-title>
+            <h2>My Rooms</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <div *ngFor="let room of rooms" fxLayoutAlign="center">
+          <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
+        </div>
+      </mat-card>
+    </div>
     <mat-card style="margin: 8px">
       <mat-card-header fxLayoutAlign="center">
         <mat-card-title>
-          <h2>ROOMS</h2>
+          <h2>Rooms On</h2>
         </mat-card-title>
       </mat-card-header>
-      <div *ngFor="let room of rooms" fxLayoutAlign="center">
-        <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
-      </div>
-      <div fxLayout="row">
-        <form [formGroup]="form" (ngSubmit)="insertRoom()">
-          <div fxLayout="column">
-            <mat-form-field>
-              <input matInput placeholder="Name" formControlName="name">
-            </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">Add Room</button>
-          </div>
-        </form>
-      </div>
+      <!-- <div *ngFor="let room of rooms" fxLayoutAlign="center">
+          <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
+        </div> -->
     </mat-card>
 
+    <div *ngIf="!appComponent.isAnonymous">
+      <mat-card>
+        <mat-card-header fxLayoutAlign="center">
+          <mat-card-title>
+            <h2>Add Room</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <div fxLayout="row">
+          <form [formGroup]="form" (ngSubmit)="insertRoom()">
+            <div fxLayout="column">
+              <mat-form-field>
+                <input matInput placeholder="Name" formControlName="name">
+              </mat-form-field>
+              <button mat-raised-button color="primary" type="submit">Add Room</button>
+            </div>
+          </form>
+        </div>
+      </mat-card>
+    </div>
 
   </mat-sidenav>
   <router-outlet></router-outlet>

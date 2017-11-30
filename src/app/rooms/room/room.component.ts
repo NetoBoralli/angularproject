@@ -12,12 +12,13 @@ import { MatSidenav } from '@angular/material';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit, OnDestroy {
-  
+
   @ViewChild('sidenav') sidenav: MatSidenav;
   inscription: Subscription;
   key;
   room: any = {};
   questions;
+  owner = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(
     private router: Router,
@@ -26,34 +27,38 @@ export class RoomComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.inscription = this.aroute.params.subscribe( (params: any) =>{
+    this.inscription = this.aroute.params.subscribe((params: any) => {
       this.key = params['key'];
 
-      this.roomsService.getRoomByKey(this.key).subscribe( (data)=> {
+      this.roomsService.getRoomByKey(this.key).subscribe((data) => {
         this.room = data;
       });
 
-      this.roomsService.getQuestions(this.key).subscribe( (data) => {
-        this.questions = data.map(c => ({ key: c.payload.key, ...c.payload.val()}));
+      this.roomsService.getQuestions(this.key).subscribe((data) => {
+        this.questions = data.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       });
+
+      this.roomsService.getParticipants(this.key, this.owner.username).subscribe(data => {
+        if (data[0] == null) this.roomsService.setParticipants(this.key, this.owner.username);
+      }); 
     })
   }
 
-  action(){
+  action() {
     this.sidenav.open();
-    this.router.navigate(['rooms/'+this.key+'/questions']);
+    this.router.navigate(['rooms/' + this.key + '/questions']);
   }
 
   closeSide() {
     this.sidenav.close();
-    this.router.navigate(['rooms/'+this.key]);
+    this.router.navigate(['rooms/' + this.key]);
   }
 
-  questionDetail(qkey: string){
-    this.router.navigate(['rooms/'+this.key+'/question/'+qkey]);
+  questionDetail(qkey: string) {
+    this.router.navigate(['rooms/' + this.key + '/question/' + qkey]);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.inscription.unsubscribe();
   }
 }

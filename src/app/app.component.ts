@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html'
@@ -8,9 +10,11 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent implements OnInit {
 
 	lang: string = 'pt';
+	isAnonymous:boolean;
 
 	constructor(
-		public translate: TranslateService
+		public translate: TranslateService,
+		private firebase: AngularFireAuth
 	) {
 		translate.addLangs(['en', 'pt']);
 		translate.setDefaultLang('pt');
@@ -18,6 +22,9 @@ export class AppComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.firebase.auth.onAuthStateChanged(user => {
+			this.isAnonymous = user.isAnonymous;
+		})
 	}
 
 	refreshSystemLanguage() {
