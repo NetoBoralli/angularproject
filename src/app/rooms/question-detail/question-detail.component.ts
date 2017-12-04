@@ -80,17 +80,18 @@ export class QuestionDetailComponent implements OnInit {
 
   updateTag(answer) {
     this.roomsService.setTag(this.key, this.qkey, answer.key, answer.tag).then(() => {
-      console.log('tag updated')
       this.sortAnswers();
     });
   }
 
   addAnswer() {
     let owner = JSON.parse(localStorage.getItem('currentUser'));
-    this.roomsService.setAnswer(this.key, this.qkey, this.form.get('answer').value, owner.username).then((data) => {
-      console.log(data);
-    });
-    this.form.reset();
+    this.roomsService.setAnswer(this.key, this.qkey, this.form.get('answer').value, this.user.username)
+      .then(res => {
+        console.log(res);
+        this.form.reset();
+        this.router.navigate([`rooms/${this.key}/question/${this.qkey}`]);
+      });
   }
 
   back() {

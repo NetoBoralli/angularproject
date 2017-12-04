@@ -25,15 +25,16 @@ export class LayoutComponent implements OnInit {
 	ngOnInit() {
 		this.firebaseAuth.auth.onAuthStateChanged(user => {
 			this.isAnonymous = user.isAnonymous;
-		})
+		});
 	}
 
 	logoff() {
-		if(this.isAnonymous){
-			this.firebaseAuth.auth.currentUser.delete();
-		}
-		localStorage.clear();
 		this.router.navigate(['login']);
+		// if(this.isAnonymous){
+		// 	this.firebaseAuth.auth.currentUser.delete();
+		// }
+		this.firebaseAuth.auth.signOut();
+		localStorage.clear();
 	}
 
 	openDialog() {

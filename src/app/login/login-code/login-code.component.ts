@@ -51,7 +51,6 @@ export class LoginCodeComponent implements OnInit {
                 this.translate.get('NoCode').subscribe((val) => this.hintLabelCode = val);
                 this.firebase.auth.currentUser.delete();
                 localStorage.clear();
-                this.router.navigate(['/login']);
               }else{
                 this.router.navigate(['/rooms/' + this.room[0].key]);
               }

@@ -26,9 +26,7 @@ const appRoutes: Routes = [
 			{ path: ':key', component: RoomComponent, children: [
 				{ path: 'questions', component: QuestionComponent}
 			]}, 
-			{ path: ':key/question', children: [
-				{ path: ':qkey', component: QuestionDetailComponent}
-			]},
+			{ path: ':key/question/:qkey', component: QuestionDetailComponent }
 		]}
 	] },
 

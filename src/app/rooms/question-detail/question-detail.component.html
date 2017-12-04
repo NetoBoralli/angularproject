@@ -56,12 +56,12 @@
       </div>
 
       <div *ngIf="!owner">
-        <form [formGroup]="form" (ngSubmit)="addAnswer()" style="margin: 8px">
+        <form [formGroup]="form" style="margin: 8px">
           <div fxLayout="column">
             <mat-form-field>
               <input matInput placeholder="Answer" formControlName="answer">
             </mat-form-field>
-            <button mat-raised-button color="primary" type="submit">Add Answer</button>
+            <button mat-raised-button color="primary" (click)="addAnswer()">Add Answer</button>
           </div>
         </form>
       </div>

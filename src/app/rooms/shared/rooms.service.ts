@@ -70,7 +70,7 @@ export class RoomsService {
       answer: answer,
       owner: owner,
       tag: ""
-    })
+    });
   }
 
   //CODES
