@@ -17,10 +17,11 @@ import { AppComponent } from '../../app.component';
 export class RoomListComponent implements OnInit {
 
   rooms;
-  roomsPart;
+  roomsOn: Array<any>;
   form: FormGroup;
   codes;
-  owner = JSON.parse(localStorage.getItem('currentUser'));
+  user = JSON.parse(localStorage.getItem('currentUser'));
+  array: Array<any>;
 
   constructor(
     private roomService: RoomsService,
@@ -30,16 +31,34 @@ export class RoomListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.roomService.getRoomsByOwner(this.owner.username).subscribe(changes => {
+    this.roomService.getRoomsByOwner(this.user.username).subscribe(changes => {
       this.rooms = changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });
 
     this.roomService.getCodes().subscribe(data => {
       this.codes = data;
     })
+
+    // this.roomService.getRoomAssociate(this.user.uid).subscribe(data => {
+    //   this.array = data.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    //   this.arrangeRoom(this.array[0].keys);
+    // })
+    this.arrangeRoom();
+
     this.form = new FormGroup({
       name: new FormControl(null)
     });
+  }
+
+  arrangeRoom() {
+    this.roomService.getRoomAssociate(this.user.uid).subscribe(data => {
+      this.array = data.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      let keys = this.array[0].keys;
+      this.roomService.getRooms().subscribe(data => {
+        let x = data.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+        this.roomsOn = x.filter(d => keys.includes(d.key) && d.owner != this.user.username);
+      });
+    })
   }
 
   insertRoom() {
@@ -47,9 +66,8 @@ export class RoomListComponent implements OnInit {
     let inserted = false;
 
     if (!this.verifyCodes(code)) {
-      this.roomService.setRooms(this.form.get('name').value, this.owner.username, code).then(data => {
+      this.roomService.setRooms(this.form.get('name').value, this.user.username, code).then(data => {
         this.form.reset();
-        // this.roomService.setParticipants(data.key, this.owner.username);
         this.roomService.setCode(code);
       })
     }
@@ -63,10 +81,6 @@ export class RoomListComponent implements OnInit {
   }
 
   goRoom(key: string) {
-    // this.roomService.getParticipants(key, this.owner.username).subscribe(data => {
-    //   if (data[0] == null) this.roomService.setParticipants(key, this.owner.username);
-    //   else console.log("User already in the room");
-    // }) 
     this.router.navigate(['rooms/', key]);
   }
 

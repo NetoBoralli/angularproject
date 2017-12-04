@@ -10,7 +10,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class AppComponent implements OnInit {
 
 	lang: string = 'pt';
-	isAnonymous:boolean;
 
 	constructor(
 		public translate: TranslateService,
@@ -21,11 +20,7 @@ export class AppComponent implements OnInit {
 		this.refreshSystemLanguage();
 	}
 
-	ngOnInit() {
-		this.firebase.auth.onAuthStateChanged(user => {
-			this.isAnonymous = user.isAnonymous;
-		})
-	}
+	ngOnInit() {}
 
 	refreshSystemLanguage() {
 		this.lang = (localStorage.getItem('preferedLang') ? localStorage.getItem('preferedLang') : this.translate.getBrowserLang());

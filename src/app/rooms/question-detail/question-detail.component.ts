@@ -1,9 +1,11 @@
-import { RoomsService } from './../shared/rooms.service';
+import { RoomComponent } from './../room/room.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { Subscription } from 'rxjs/Rx';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs/Rx';
+
+import { RoomsService } from './../shared/rooms.service';
 
 @Component({
   selector: 'app-question-detail',
@@ -19,6 +21,9 @@ export class QuestionDetailComponent implements OnInit {
   answers;
   tags;
   form: FormGroup;
+  room: any = {}
+  owner: boolean = false;
+  user = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(
     private router: Router,
@@ -39,6 +44,17 @@ export class QuestionDetailComponent implements OnInit {
         this.answers = data.map(c => ({ key: c.payload.key, ...c.payload.val() }));
         this.sortAnswers()
       });
+
+      this.roomsService.getRoomByKey(this.key).subscribe((data) => {
+        this.room = data;
+        if(this.room.owner == this.user.username){
+          this.owner = true;
+        }else {
+          this.owner = false;
+        }
+          
+      });
+
     })
 
     this.form = new FormGroup({

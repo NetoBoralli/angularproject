@@ -19,9 +19,9 @@
           <h2>Rooms On</h2>
         </mat-card-title>
       </mat-card-header>
-      <!-- <div *ngFor="let room of rooms" fxLayoutAlign="center">
+      <div *ngFor="let room of roomsOn" fxLayoutAlign="center">
           <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
-        </div> -->
+      </div>
     </mat-card>
 
     <div *ngIf="!appComponent.isAnonymous">

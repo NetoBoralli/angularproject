@@ -8,35 +8,45 @@ export class RoomsService {
     private db: AngularFireDatabase
   ) { }
 
+  //ROOMS
   getRoomsByOwner(owner) {
     return this.db.list('rooms', ref => ref.orderByChild('owner').equalTo(owner)).snapshotChanges();
   }
 
-  getQuestions(key) {
-    return this.db.list('rooms/' + key + '/questions').snapshotChanges();
-  }
-
-  getAnswers(key: string, qkey: string) {
-    return this.db.list('rooms/' + key + '/questions/' + qkey + '/answers').snapshotChanges();
-  }
-
-  getCodes() {
-    return this.db.list('codes').valueChanges();
+  getRooms() {
+    return this.db.list('rooms').snapshotChanges();
   }
 
   setRooms(name: string, owner: string, code: string) {
     return this.db.list('rooms').push({
       name: name,
       owner: owner,
-      code: code,
-      participants: ""
+      code: code
+      // participants: ""
     })
   }
 
-  setCode(code: string) {
-    return this.db.list('codes').push({
-      code: code
-    })
+  getRoomByKey(key: string) {
+    return this.db.object('rooms/'+ key).valueChanges();
+  }
+
+  getRoomOn(key: string) {
+    return this.db.list('rooms', ref => ref.orderByKey().equalTo(key)).snapshotChanges();
+  }
+
+  getRoomByCode(code: string) {
+    return this.db.list('rooms', ref => ref.orderByChild('code').equalTo(code)).snapshotChanges();
+  }
+
+  setTag(key: string, qkey: string, akey: string, tag: string) {
+    return this.db.object('rooms/' + key + '/questions/' + qkey + '/answers/' + akey).update({
+      tag: tag
+    });
+  }
+
+  //QUESTIONS
+  getQuestions(key) {
+    return this.db.list('rooms/' + key + '/questions').snapshotChanges();
   }
 
   setQuestion(key: string, question: string, owner: string) {
@@ -44,6 +54,15 @@ export class RoomsService {
       question: question,
       owner: owner
     });
+  }
+
+  getQuestionByKey(key: string, qkey: string) {
+    return this.db.object('rooms/' + key + '/questions/' + qkey).valueChanges();
+  }
+
+  //ANSWERS
+  getAnswers(key: string, qkey: string) {
+    return this.db.list('rooms/' + key + '/questions/' + qkey + '/answers').snapshotChanges();
   }
 
   setAnswer(key: string, qkey: string, answer: string, owner: string) {
@@ -54,32 +73,42 @@ export class RoomsService {
     })
   }
 
-  setTag(key: string, qkey: string, akey: string, tag: string) {
-    return this.db.object('rooms/' + key + '/questions/' + qkey + '/answers/' + akey).update({
-      tag: tag
-    });
+  //CODES
+  getCodes() {
+    return this.db.list('codes').valueChanges();
   }
 
-  setParticipants(key: string, name) {
-    return this.db.list('rooms/'+key+'/participants').push({
-      participant : name
+  setCode(code: string) {
+    return this.db.list('codes').push({
+      code: code
     })
   }
 
-  getParticipants(key: string, name: string) {
-    return this.db.list('rooms/'+key+'/participants', c => c.orderByChild('participant').equalTo(name)).valueChanges();
+  //ROOMS ASSOCIATE 
+  setRoomAssociate(uid, keys){
+    return this.db.list('rooms-associate').push({
+      uid: uid,
+      keys: keys
+    });
   }
 
-  getRoomByKey(key: string) {
-    return this.db.object('rooms/' + key).valueChanges();
+  updateRoomAssociate(key, keys) {
+    return this.db.object('rooms-associate/'+key).update({
+      keys: keys
+    })
   }
 
-  getQuestionByKey(key: string, qkey: string) {
-    return this.db.object('rooms/' + key + '/questions/' + qkey).valueChanges();
+  getRoomAssociate(uid) {
+    return this.db.list('rooms-associate', ref => ref.orderByChild('uid').equalTo(uid)).snapshotChanges();
   }
 
-  getRoomByCode(code: string) {
-    return this.db.list('rooms', ref => ref.orderByChild('code').equalTo(code)).snapshotChanges();
-  }
+  // setParticipants(key: string, arrayP) {
+  //   return this.db.object('rooms/'+key).update({
+  //     participants : arrayP
+  //   })
+  // }
 
+  // getParticipants(key: string) {
+  //   return this.db.list('rooms/'+key+'/participants').valueChanges();
+  // }
 }

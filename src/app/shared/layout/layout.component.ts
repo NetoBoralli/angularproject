@@ -18,14 +18,21 @@ export class LayoutComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private dialogService: DialogsService,
-		public translate: TranslateService
+		public translate: TranslateService,
+		private firebaseAuth: AngularFireAuth
 	) { }
 
 	ngOnInit() {
+		this.firebaseAuth.auth.onAuthStateChanged(user => {
+			this.isAnonymous = user.isAnonymous;
+		})
 	}
 
 	logoff() {
-		localStorage.removeItem('currentUser');
+		if(this.isAnonymous){
+			this.firebaseAuth.auth.currentUser.delete();
+		}
+		localStorage.clear();
 		this.router.navigate(['login']);
 	}
 

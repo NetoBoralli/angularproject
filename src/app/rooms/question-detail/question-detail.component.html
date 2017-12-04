@@ -14,16 +14,16 @@
 
     <div fxLayout="row" fxLayoutWrap>
       <mat-card class="card" *ngFor="let tag of tags">
-         <mat-card-header>
+        <mat-card-header>
           <mat-card-title>
             {{tag.tag ?tag.tag :'Sem tag'}}
           </mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <div *ngFor="let answer of tag.answers">
-              {{answer.answer}}
-            </div>
-          </mat-card-content>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngFor="let answer of tag.answers">
+            {{answer.answer}}
+          </div>
+        </mat-card-content>
       </mat-card>
     </div>
 
@@ -38,45 +38,33 @@
         </mat-card-title>
       </mat-card-header>
 
-      <div *ngFor="let answer of answers" fxLayoutAlign="center">
-
-        <mat-card-content>
-          <span *ngIf="!answer.isEditing">
-            {{answer.answer}}
-          </span>
-          <mat-form-field *ngIf="answer.isEditing">
-            <input matInput placeholder="Tag" [(ngModel)]="answer.tag" (keyup.enter)="updateTag(answer)">
-          </mat-form-field>
-        </mat-card-content>
-
-        <button mat-icon-button (click)="setTF(answer)">
-          <mat-icon>{{answer.isEditing ?'remove' :'add'}}</mat-icon>
-        </button>
-        <!-- <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
+      <div *ngIf="owner">
+        <div *ngFor="let answer of answers" fxLayoutAlign="center">
+          <mat-card-content>
+            <span *ngIf="!answer.isEditing">
               {{answer.answer}}
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <form>
-            <mat-form-field>
-              <input matInput placeholder="Tag">
+            </span>
+            <mat-form-field *ngIf="answer.isEditing">
+              <input matInput placeholder="Tag" [(ngModel)]="answer.tag" (keyup.enter)="updateTag(answer)">
             </mat-form-field>
-            <button mat-button type="submit">Add</button>
-          </form>
-        </mat-expansion-panel> -->
-        <!-- <button mat-raised-button color="primary" style="font-size : 20px; width: 100%; margin: 3px;">{{answer.answer}}</button> -->
+          </mat-card-content>
+
+          <button mat-icon-button (click)="setTF(answer)">
+            <mat-icon>{{answer.isEditing ?'remove' :'add'}}</mat-icon>
+          </button>
+        </div>
       </div>
 
-      <form [formGroup]="form" (ngSubmit)="addAnswer()" style="margin: 8px">
-        <div fxLayout="column">
-          <mat-form-field>
-            <input matInput placeholder="Answer" formControlName="answer">
-          </mat-form-field>
-          <button mat-raised-button color="primary" type="submit">Add Answer</button>
-        </div>
-      </form>
+      <div *ngIf="!owner">
+        <form [formGroup]="form" (ngSubmit)="addAnswer()" style="margin: 8px">
+          <div fxLayout="column">
+            <mat-form-field>
+              <input matInput placeholder="Answer" formControlName="answer">
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Add Answer</button>
+          </div>
+        </form>
+      </div>
 
     </mat-card>
 

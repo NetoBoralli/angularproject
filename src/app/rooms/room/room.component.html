@@ -1,8 +1,10 @@
 <mat-sidenav-container style="height: 100%;">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2">
-    <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
-      <mat-icon>close</mat-icon>
-    </a>
+    <div *ngIf="owner">
+      <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
+        <mat-icon>close</mat-icon>
+      </a>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav>
   <mat-sidenav-content class="hide-scroll">
@@ -27,8 +29,10 @@
     </div>
 
 
-    <button mat-fab class="add-q" (click)="action()">
-      <mat-icon>add</mat-icon>
-    </button>
+    <div *ngIf="owner">
+      <button mat-fab class="add-q" (click)="action()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

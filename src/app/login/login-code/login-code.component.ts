@@ -6,6 +6,7 @@ import { LoginService } from '../shared/login.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { KeyService } from './../../shared/services/helpers/key.service';
 import { RoomsService } from './../../rooms/shared/rooms.service';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-login-code',
@@ -23,7 +24,8 @@ export class LoginCodeComponent implements OnInit {
     private loginService: LoginService,
     private keyService: KeyService,
     private roomsService: RoomsService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private firebase: AngularFireAuth
   ) { }
 
   ngOnInit() {
@@ -37,25 +39,26 @@ export class LoginCodeComponent implements OnInit {
     if (!this.form.valid) return null;
     let name = this.form.get('username').value != null ? this.form.get('username').value : this.randomName();
 
-    this.roomsService.getRoomByCode(this.form.get('code').value).subscribe(changes => {
-      this.room = changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-      if (this.room[0] == null) {
-        this.translate.get('NoCode').subscribe((val) => this.hintLabelCode = val);
-      } else {
-        this.loginService.doAnonymousLogin()
-          .then(res => {
-            let uid = res.uid;
-            this.loginService.doUpdateOnSignUp(name)
-              .then((res) => {
-                localStorage.setItem('currentUser', JSON.stringify({ username: name, uid: uid, anonymous: true }));
+    this.loginService.doAnonymousLogin()
+      .then(res => {
+        let uid = res.uid;
+        this.loginService.doUpdateOnSignUp(name)
+          .then((res) => {
+            localStorage.setItem('currentUser', JSON.stringify({ username: name, uid: uid, anonymous: true }));
+            this.roomsService.getRoomByCode(this.form.get('code').value).subscribe(changes => {
+              this.room = changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+              if (this.room[0] == null) {
+                this.translate.get('NoCode').subscribe((val) => this.hintLabelCode = val);
+                this.firebase.auth.currentUser.delete();
+                localStorage.clear();
+                this.router.navigate(['/login']);
+              }else{
                 this.router.navigate(['/rooms/' + this.room[0].key]);
-              })
-              .catch((err) => {
-                console.log(err.code);
-              });
+              }
+            })
           })
-      }
-    });
+
+      });
 
   }
 

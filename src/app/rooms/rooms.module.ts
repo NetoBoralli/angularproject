@@ -28,9 +28,9 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
   ],
   declarations: [
     RoomListComponent,
-    RoomComponent,
     QuestionComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
+    RoomComponent
   ],
   providers: [
     RoomsService
