@@ -2,7 +2,8 @@
 	<button mat-raised-button color="primary" (click)="login()">{{'Login' | translate}}</button>
 </div> -->
 <div class="container">
-	<mat-card style="width: 30%">
+	<div class="helper">
+	<mat-card>
 		<mat-card-header>
 			<mat-card-title>
 				{{('Login' | translate).toUpperCase()}}
@@ -21,15 +22,16 @@
 						<mat-error *ngIf="form.get('password').hasError('required')">{{'Required' | translate}}</mat-error>
 					</mat-form-field>
 					<div fxLayout="row">
-						<button mat-button color="primary" (click)="signUp()" style="width: 50%;">{{'SignUp' | translate}}</button>
-						<button mat-raised-button color="primary" type="submit" style="width: 50%;">{{'Login' | translate}}</button>
+						<button mat-raised-button (click)="changeRoute()" style="width: 49%; margin-right: 2%;">{{'SignInWithCode' | translate}}</button>
+						<button mat-raised-button color="primary" type="submit" style="width: 49%;">{{'Login' | translate}}</button>
 					</div>
-					<button mat-raised-button (click)="changeRoute()">{{'SignInWithCode' | translate}}</button>
+					<button mat-button color="primary" (click)="signUp()">{{'SignUp' | translate}}</button>
 				</div>
 			</form>
 		</mat-card-content>
 	</mat-card>
 	<mat-progress-spinner class="spinner" *ngIf="showProgress" color="primary" mode="indeterminate"></mat-progress-spinner>
+	</div>
 </div>
 
 <router-outlet></router-outlet>
