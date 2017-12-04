@@ -37,9 +37,14 @@ export class RoomComponent implements OnInit, OnDestroy {
 
       this.roomsService.getRoomByKey(this.key).subscribe((data) => {
         this.room = data;
-        if(this.room.owner == this.user.username){
+        // this.questions = Object.keys(this.room.questions).map(key => {
+        //   return { key: key, ...this.room.questions[key] };
+        // });
+        // console.log(this.room);
+
+        if (this.room.owner == this.user.username) {
           this.owner = true;
-        }else {
+        } else {
           this.owner = false;
         }
       });

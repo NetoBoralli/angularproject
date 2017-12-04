@@ -30,10 +30,11 @@ export class LayoutComponent implements OnInit {
 
 	logoff() {
 		this.router.navigate(['login']);
-		// if(this.isAnonymous){
-		// 	this.firebaseAuth.auth.currentUser.delete();
-		// }
-		this.firebaseAuth.auth.signOut();
+		if(this.isAnonymous){
+			this.firebaseAuth.auth.currentUser.delete();
+		}else{
+			this.firebaseAuth.auth.signOut();
+		}
 		localStorage.clear();
 	}
 
