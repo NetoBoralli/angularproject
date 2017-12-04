@@ -1,4 +1,4 @@
-<mat-sidenav-container style="height: 100%;">
+<mat-sidenav-container style="height: 100%; padding: 10px;">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2">
     <div *ngIf="owner">
       <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
@@ -10,11 +10,11 @@
   <mat-sidenav-content class="hide-scroll">
 
     <h2>
-      {{room.name}}
+      {{room.name}} ({{'Code' | translate}}: {{room.code}})
     </h2>
-    <h2>
-      {{room.owner}}
-    </h2>
+    <h3 style="color: #444">
+      {{'By' | translate}} {{room.owner}}
+    </h3>
 
     <div fxLayout="row" fxLayoutWrap>
       <mat-card class="card" *ngFor="let quest of questions">

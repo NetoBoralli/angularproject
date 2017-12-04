@@ -14,10 +14,10 @@
 	"WrongEmail": "Usuário não existe",
 	"ExistentEmail": "Email ja cadastrado",
 	"Pass": "Senha",
-	"Email": "O email",
+	"Email": "Email",
 	"Username": "Usuário",
 	"ConfirmPassword": "Confirme a senha",
-	"Code": "O Código",
+	"Code": "Código",
 	"Required": "Requerido",
 	"InvalidEmail": "Email invalido",
 	"SignUp": "Cadastre-se",
@@ -25,5 +25,6 @@
 	"Send": "Enviar",
 	"NotEqualPass": "Senhas não combinam",
 	"MinLength": "A senha deve ter pelo menos seis caracteres",
-	"NoCode": "Sem salas com esse código"
+	"NoCode": "Sem salas com esse código",
+	"By": "por"
 }
