@@ -9,20 +9,15 @@
   </mat-sidenav>
 
   <mat-sidenav-content fxLayout="column" fxLayoutAlign="start center">
-    <h2>
-      {{room.name}} ({{'Code' | translate}}: {{room.code}})
-    </h2>
-    <h3 style="color: #444">
-      {{'By' | translate}} {{room.owner}}
-    </h3>
 
     <div class="center">
       <h3 class="text" fxLayout="column">
-        {{room.name}}
+        {{room.name}} ({{'Code' | translate}}: {{room.code}})
         <span class="text-mini">
-          {{room.owner}}
+          {{'By' | translate}} {{room.owner}}
         </span>
       </h3>
+      
       <div fxLayout="row" fxLayoutWrap>
         <mat-card class="card" *ngFor="let quest of questions">
           <button mat-button style="width: 100%" (click)="questionDetail(quest.key)">
