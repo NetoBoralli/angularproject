@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +11,8 @@ import { LayoutComponent } from './layout.component';
 	imports: [
 		MaterialModule,
 		RouterModule,
-		TranslateModule
+		TranslateModule,
+		FlexLayoutModule
 	],
 	declarations: [
 		LayoutComponent

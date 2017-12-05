@@ -1,3 +1,29 @@
 .button {
 	margin-right: 10px;
+
+}
+
+.icon {
+	color: white;
+}
+
+.text-identify {
+	font-size: 17px;
+	padding: 8px;
+}
+
+.title {
+	/* font-family: 'Lobster', cursive; */
+	font-family: 'Spectral SC', serif;
+}
+
+.flag{
+    max-height: 100%; 
+    height: auto; 
+    width: 20px; 
+    padding-right: 10px;
+}
+
+span {
+	font-family: 'Roboto', sans-serif;
 }

@@ -9,7 +9,7 @@
 	"ConfirmDialog": "Caixa de Confirmação",
 	"SelectAnOptionAndOpendTheConsole": "Selecione uma opção e abra o console",
 	"Ok": "Ok",
-	"ChangeLanguageTo": "Mudar idioma para:",
+	"ChangeLanguage": "Alterar Idioma",
 	"WrongPass": "Senha incorreta",
 	"WrongEmail": "Usuário não existe",
 	"ExistentEmail": "Email ja cadastrado",

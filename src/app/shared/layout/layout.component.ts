@@ -14,6 +14,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LayoutComponent implements OnInit {
 
 	isAnonymous: boolean;
+	identify;
+	u = JSON.parse(localStorage.getItem('currentUser'));
 
 	constructor(
 		private router: Router,
@@ -24,18 +26,34 @@ export class LayoutComponent implements OnInit {
 
 	ngOnInit() {
 		this.firebaseAuth.auth.onAuthStateChanged(user => {
-			this.isAnonymous = user.isAnonymous;
+			if (user) {
+				this.isAnonymous = user.isAnonymous;
+				this.identify = this.isAnonymous == true ? this.u.username : this.u.email;
+			}
 		});
+
 	}
 
 	logoff() {
-		this.router.navigate(['login']);
-		if(this.isAnonymous){
-			this.firebaseAuth.auth.currentUser.delete();
-		}else{
-			this.firebaseAuth.auth.signOut();
+		if (this.isAnonymous) {
+			this.firebaseAuth.auth.currentUser.delete()
+				.then(res => {
+					let lang = localStorage.getItem('preferedLang');
+					localStorage.clear();
+					localStorage.setItem('preferedLang', lang);
+					this.router.navigate(['login']);
+				})
+				.catch(err => console.log(err));
+		} else {
+			this.firebaseAuth.auth.signOut()
+				.then(res => {
+					let lang = localStorage.getItem('preferedLang');
+					localStorage.clear();
+					localStorage.setItem('preferedLang', lang);
+					this.router.navigate(['login']);
+				})
+				.catch(err => console.log(err));
 		}
-		localStorage.clear();
 	}
 
 	openDialog() {
@@ -52,8 +70,8 @@ export class LayoutComponent implements OnInit {
 		this.router.navigate(['rooms']);
 	}
 
-	changeLanguage() {
-		this.translate.use(this.translate.currentLang === 'en' ? 'pt' : 'en').subscribe((res) => {
+	changeLanguage(lang) {
+		this.translate.use(lang).subscribe((res) => {
 			localStorage.setItem('preferedLang', this.translate.currentLang);
 		});
 	}

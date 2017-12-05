@@ -9,7 +9,7 @@
 	"ConfirmDialog": "Confirmation Dialog",
 	"SelectAnOptionAndOpendTheConsole": "Select an option and open console",
 	"Ok": "Ok",
-	"ChangeLanguageTo": "Change language to:",
+	"ChangeLanguage": "Change language",
 	"WrongPass": "Wrong password",
 	"WrongEmail": "User doesn't exists",
 	"ExistentEmail": "Email already in use",
