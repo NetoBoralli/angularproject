@@ -9,7 +9,10 @@
           </mat-card-title>
         </mat-card-header>
         <div *ngFor="let room of rooms" fxLayoutAlign="center">
-          <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
+
+          <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">
+            {{room.name}}
+          </button>
         </div>
       </mat-card>
     </div>
@@ -20,7 +23,7 @@
         </mat-card-title>
       </mat-card-header>
       <div *ngFor="let room of roomsOn" fxLayoutAlign="center">
-          <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
+        <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
       </div>
     </mat-card>
 

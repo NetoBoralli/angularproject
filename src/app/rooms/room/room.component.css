@@ -23,3 +23,32 @@
   min-width: 150px;
   max-width: 150px;
 }
+
+.center {
+  max-width: 65%;
+}
+
+.text {
+  font-family: 'Roboto', sans-serif;
+}
+
+.text-mini {
+  font-family: 'Roboto', sans-serif;
+  color: grey; 
+  font-size: 15px;
+}
+
+.mat-sidenav-content {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  transform: none !important;
+}
+
+.mat-drawer-closed {
+width: 0px !important;
+min-width: 0px !important;
+max-width: 0px !important;
+height: 0px !important;
+min-height: 0px !important;
+max-height: 0px !important;
+}

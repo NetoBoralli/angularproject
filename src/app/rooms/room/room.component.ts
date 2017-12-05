@@ -82,12 +82,6 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   action() {
-    // this.roomsService.setRoomAssociate(this.user.uid, this.key).then(data => {
-    //   console.log('added');
-    // });
-    // let keys = ['-L-HM9XduheXxJsCrnPy', '-L-HB8cjRePxY8FV0WjV'];
-    // let key = '-L-HEk-oJ_3ntNL2H8qj';
-    // this.roomsService.updateRoomAssociate(key, keys);
     this.sidenav.open();
     this.router.navigate(['rooms/' + this.key + '/questions']);
   }
@@ -98,7 +92,8 @@ export class RoomComponent implements OnInit, OnDestroy {
   }
 
   questionDetail(qkey: string) {
-    this.router.navigate(['rooms/' + this.key + '/question/' + qkey]);
+    this.sidenav.open();
+    this.router.navigate(['rooms/' + this.key + '/questions/' + qkey]);
   }
 
   ngOnDestroy() {

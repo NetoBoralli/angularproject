@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('currentUser', JSON.stringify({email: res.email, username: res.displayName, uid: res.uid}));
 			this.hintLabelPassword = null;
 			this.hintLabelEmail = null;
-			this.router.navigate(['/users']);
+			this.router.navigate(['rooms']);
         }).catch((error)=> {
             this.showProgress = false;
 			if(error.code == 'auth/wrong-password')

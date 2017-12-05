@@ -11,11 +11,14 @@ import { RoomComponent } from '../room/room.component';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent implements OnInit, OnDestroy {
-  
+export class QuestionComponent implements OnInit {
+
   inscription: Subscription
   form: FormGroup
   key: string;
+  qkey: string;
+  question: any = {};
+  new: boolean = false;
 
   constructor(
     private roomsService: RoomsService,
@@ -26,15 +29,22 @@ export class QuestionComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.inscription = this.aroute.params.subscribe((params: any) => {
       this.key = this.roomComponent.key;
-    });
+      this.qkey = params['qkey'];
+
+      this.roomsService.getQuestionByKey(this.key, this.qkey).subscribe((data) => {
+        if (data){
+          this.question = data;
+
+        }else{
+          this.new = true;
+        }
+
+      });
+    })
 
     this.form = new FormGroup({
       question: new FormControl(null)
     });
-  }
-
-  ngOnDestroy() {
-    this.roomComponent.sidenav.close();
   }
 
   insertQuestion() {

@@ -24,9 +24,9 @@ const appRoutes: Routes = [
 	{ path: '', component: LayoutComponent, canActivate: [AppAuthGuard], children: [
 		{ path: 'rooms', component: RoomListComponent, children: [
 			{ path: ':key', component: RoomComponent, children: [
-				{ path: 'questions', component: QuestionComponent}
-			]}, 
-			{ path: ':key/question/:qkey', component: QuestionDetailComponent }
+				{ path: 'questions', component: QuestionComponent},
+				{ path: 'questions/:qkey', component: QuestionComponent}
+			]}
 		]}
 	] },
 

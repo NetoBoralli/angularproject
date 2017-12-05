@@ -1,8 +1,10 @@
-<form [formGroup]="form" (ngSubmit)="insertQuestion()" style="margin: 8px">
+<form [formGroup]="form" style="margin: 8px">
   <div fxLayout="column">
     <mat-form-field>
-      <input matInput placeholder="Question" formControlName="question">
+      <input matInput placeholder="Question" formControlName="question" [ngModel]="question.question">
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Add Question</button>
+    <div *ngIf="new">
+      <button mat-raised-button color="primary" (click)="insertQuestion()">Add Question</button>
+    </div>
   </div>
 </form>
