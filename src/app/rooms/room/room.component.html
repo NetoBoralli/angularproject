@@ -1,4 +1,4 @@
-<mat-sidenav-container style="height: 100%;">
+<mat-sidenav-container style="height: 100%; padding: 10px;">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2">
     <div *ngIf="owner">
       <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
@@ -9,6 +9,12 @@
   </mat-sidenav>
 
   <mat-sidenav-content fxLayout="column" fxLayoutAlign="start center">
+    <h2>
+      {{room.name}} ({{'Code' | translate}}: {{room.code}})
+    </h2>
+    <h3 style="color: #444">
+      {{'By' | translate}} {{room.owner}}
+    </h3>
 
     <div class="center">
       <h3 class="text" fxLayout="column">
