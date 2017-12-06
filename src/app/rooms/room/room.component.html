@@ -17,14 +17,12 @@
       </h3>
 
       <div fxLayout="row" fxLayoutWrap>
-        <mat-card class="card" *ngFor="let quest of questions">
-          <button mat-button style="width: 100%" (click)="questionDetail(quest.key)">
-            <mat-card-header>
-              <mat-card-title class="text">
-                {{quest.question}}
-              </mat-card-title>
-            </mat-card-header>
-          </button>
+        <mat-card class="card" *ngFor="let quest of questions" (click)="questionDetail(quest.key)">
+          <mat-card-header>
+            <mat-card-title class="text">
+              {{quest.question}}
+            </mat-card-title>
+          </mat-card-header>
         </mat-card>
       </div>
     </div>

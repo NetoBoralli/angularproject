@@ -1,11 +1,9 @@
 <form [formGroup]="form" style="margin: 8px">
   <div fxLayout="column">
     <mat-form-field>
-      <input matInput placeholder="Question" formControlName="question" [ngModel]="question.question">
+      <textarea matInput placeholder="Question" formControlName="question" [(ngModel)]="question.question"></textarea>
     </mat-form-field>
-    <div *ngIf="new">
-      <button mat-raised-button color="primary" (click)="insertQuestion()">Add Question</button>
-    </div>
+    <button mat-raised-button color="primary" (click)="insertQuestion()">Add Question</button>
   </div>
 </form>
 
@@ -13,8 +11,13 @@
   <mat-expansion-panel *ngFor="let tag of tags">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <mat-icon style="font-size: 1.050em;">label</mat-icon>
-        {{tag.tag ?tag.tag :'[Não Informada]'}}
+        <div fxLayoutAlign="center center" fxLayoutGap="0.625em">
+          <!-- <mat-icon color="primary">local_offer</mat-icon> -->
+          <p id="hash">#</p>
+          <span>
+            {{tag.tag ?tag.tag :'[Não Informada]'}}
+          </span>
+        </div>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
@@ -25,9 +28,9 @@
         </p>
 
         <div fxLayout="row">
-          <div *ngIf="owner; else elseBlock">
+          <div *ngIf="this.roomComponent.owner; else elseBlock">
             <p *ngIf="!answer.isEditing" class="text-low" (click)="setTF(answer)">
-              #{{answer.tag}}
+              {{answer.tag ?'#'+answer.tag :'[Não Informada]'}}
             </p>
             <mat-form-field *ngIf="answer.isEditing">
               <input matInput placeholder="Tag" [(ngModel)]="answer.tag" (keyup.enter)="updateTag(answer)">
@@ -36,15 +39,15 @@
 
           <ng-template #elseBlock>
             <p class="text-low">
-              #{{answer.tag}}
+              {{answer.tag ?'#'+answer.tag :'[Não Informada]'}}
             </p>
           </ng-template>
         </div>
       </div>
 
-      <div>
+      <div fxLayoutAlign="center center">
+        <mat-icon style="color: grey;">person</mat-icon>
         <span class="text-low">
-          <mat-icon>person</mat-icon>
           {{answer.owner}}
         </span>
       </div>
@@ -52,7 +55,7 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<div *ngIf="!owner">
+<div *ngIf="!this.roomComponent.owner">
   <form [formGroup]="answerForm" style="margin: 8px">
     <div fxLayout="column">
       <mat-form-field>

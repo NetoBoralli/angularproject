@@ -22,17 +22,17 @@ export class QuestionComponent implements OnInit, OnDestroy {
   new: boolean = false;
   answers;
   tags: any[] = [];
-  owner: boolean = false;
+  // owner: boolean = false;
   user = JSON.parse(localStorage.getItem('currentUser'));
 
   constructor(
     private roomsService: RoomsService,
     private aroute: ActivatedRoute,
-    private roomComponent: RoomComponent
+    public roomComponent: RoomComponent
   ) { }
 
   ngOnInit() {
-    this.owner = this.user.username == this.roomComponent.room.owner ? true : false;
+    // this.owner = this.user.username == this.roomComponent.room.owner ? true : false;
 
     this.inscription = this.aroute.params.subscribe((params: any) => {
       this.key = this.roomComponent.key;
@@ -41,7 +41,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
       this.roomsService.getQuestionByKey(this.key, this.qkey).subscribe((data) => {
         if (data) {
           this.question = data;
-
         } else {
           this.new = true;
         }
@@ -50,7 +49,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
           this.sortAnswers();
         });
       });
-    })
+    });
 
     this.form = new FormGroup({
       question: new FormControl(null)
@@ -97,6 +96,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   updateTag(answer) {
+    answer.tag = answer.tag[0] == '#' ? answer.tag.substring(1) : answer.tag;
     this.roomsService.setTag(this.key, this.qkey, answer.key, answer.tag).then(() => {
       this.sortAnswers();
       this.setTF(answer);

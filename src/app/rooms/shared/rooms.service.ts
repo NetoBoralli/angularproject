@@ -38,38 +38,38 @@ export class RoomsService {
     return this.db.list('rooms', ref => ref.orderByChild('code').equalTo(code)).snapshotChanges();
   }
 
-  setTag(key: string, qkey: string, akey: string, tag: string) {
-    return this.db.object('rooms/' + key + '/questions/' + qkey + '/answers/' + akey).update({
-      tag: tag
-    });
-  }
-
   //QUESTIONS
   getQuestions(key) {
     return this.db.list('rooms/' + key + '/questions').snapshotChanges();
   }
-
+  
   setQuestion(key: string, question: string, owner: string) {
     return this.db.list('rooms/' + key + '/questions').push({
       question: question,
       owner: owner
     });
   }
-
+  
   getQuestionByKey(key: string, qkey: string) {
     return this.db.object('rooms/' + key + '/questions/' + qkey).valueChanges();
   }
-
+  
   //ANSWERS
   getAnswers(key: string, qkey: string) {
     return this.db.list('rooms/' + key + '/questions/' + qkey + '/answers').snapshotChanges();
   }
-
+  
   setAnswer(key: string, qkey: string, answer: string, owner: string) {
     return this.db.list('rooms/' + key + '/questions/' + qkey + '/answers').push({
       answer: answer,
       owner: owner,
       tag: ""
+    });
+  }
+  
+  setTag(key: string, qkey: string, akey: string, tag: string) {
+    return this.db.object('rooms/' + key + '/questions/' + qkey + '/answers/' + akey).update({
+      tag: tag
     });
   }
 

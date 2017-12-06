@@ -7,3 +7,9 @@ p, button {
     color: grey; 
     font-size: 0.925em;
 }
+
+#hash {
+    font-family: 'Fredoka One', cursive;
+    color: #3f51b5;
+    font-size: 1.550em
+}
