@@ -1,7 +1,7 @@
 .add-q {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 1.875em;
+    right: 1.875em;
     z-index: 1;
   }
 
@@ -19,9 +19,9 @@
 }
 
 .card {
-	margin: 10px;
-  min-width: 150px;
-  max-width: 150px;
+	margin: 0.625em;
+  min-width: 9.375em;
+  max-width: 9.375em;
 }
 
 .center {
@@ -35,7 +35,7 @@
 .text-mini {
   font-family: 'Roboto', sans-serif;
   color: grey; 
-  font-size: 15px;
+  font-size: 0.925em;
 }
 
 .mat-sidenav-content {
@@ -45,10 +45,14 @@
 }
 
 .mat-drawer-closed {
-width: 0px !important;
-min-width: 0px !important;
-max-width: 0px !important;
-height: 0px !important;
-min-height: 0px !important;
-max-height: 0px !important;
+  width: 0px !important;
+  min-width: 0px !important;
+  max-width: 0px !important;
+  height: 0px !important;
+  min-height: 0px !important;
+  max-height: 0px !important;
+}
+
+.sidenav {
+  width: 50%;
 }

@@ -8,3 +8,57 @@
     </div>
   </div>
 </form>
+
+<mat-accordion style="padding: 5px;">
+  <mat-expansion-panel *ngFor="let tag of tags">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon style="font-size: 1.050em;">label</mat-icon>
+        {{tag.tag ?tag.tag :'[Não Informada]'}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let answer of tag.answers" fxLayoutAlign="space-between">
+      <div fxLayout="column">
+        <p class="answer">
+          {{answer.answer}}
+        </p>
+
+        <div fxLayout="row">
+          <div *ngIf="owner; else elseBlock">
+            <p *ngIf="!answer.isEditing" class="text-low" (click)="setTF(answer)">
+              #{{answer.tag}}
+            </p>
+            <mat-form-field *ngIf="answer.isEditing">
+              <input matInput placeholder="Tag" [(ngModel)]="answer.tag" (keyup.enter)="updateTag(answer)">
+            </mat-form-field>
+          </div>
+
+          <ng-template #elseBlock>
+            <p class="text-low">
+              #{{answer.tag}}
+            </p>
+          </ng-template>
+        </div>
+      </div>
+
+      <div>
+        <span class="text-low">
+          <mat-icon>person</mat-icon>
+          {{answer.owner}}
+        </span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div *ngIf="!owner">
+  <form [formGroup]="answerForm" style="margin: 8px">
+    <div fxLayout="column">
+      <mat-form-field>
+        <input matInput placeholder="Answer" formControlName="answer">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addAnswer()">Add Answer</button>
+    </div>
+  </form>
+</div>
