@@ -3,7 +3,12 @@
     <mat-form-field>
       <textarea matInput placeholder="Question" formControlName="question" [(ngModel)]="question.question"></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="insertQuestion()">Add Question</button>
+    <div *ngIf="!new && this.roomComponent.owner" fxFlexAlign="end">
+      <button mat-button color="primary" [disabled]="this.form.dirty ?false :true" (click)="updateQuestion()"> Save</button>
+    </div>
+    <div *ngIf="new">
+      <button mat-raised-button color="primary" (click)="insertQuestion()">Add Question</button>
+    </div>
   </div>
 </form>
 

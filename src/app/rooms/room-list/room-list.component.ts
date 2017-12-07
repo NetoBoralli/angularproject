@@ -7,7 +7,7 @@ import { RoomsService } from '../shared/rooms.service';
 import { KeyService } from './../../shared/services/helpers/key.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AppComponent } from '../../app.component';
+import { LayoutComponent } from './../../shared/layout/layout.component';
 
 @Component({
   selector: 'app-room-list',
@@ -27,7 +27,7 @@ export class RoomListComponent implements OnInit {
     private roomService: RoomsService,
     private router: Router,
     private keyService: KeyService,
-    private appComponent: AppComponent
+    private layoutComponent: LayoutComponent
   ) { }
 
   ngOnInit() {

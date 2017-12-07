@@ -14,7 +14,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class LayoutComponent implements OnInit {
 
 	isAnonymous: boolean;
-	identify;
 	u = JSON.parse(localStorage.getItem('currentUser'));
 
 	constructor(
@@ -28,7 +27,6 @@ export class LayoutComponent implements OnInit {
 		this.firebaseAuth.auth.onAuthStateChanged(user => {
 			if (user) {
 				this.isAnonymous = user.isAnonymous;
-				this.identify = this.isAnonymous == true ? this.u.username : this.u.email;
 			}
 		});
 

@@ -53,6 +53,12 @@ export class RoomsService {
   getQuestionByKey(key: string, qkey: string) {
     return this.db.object('rooms/' + key + '/questions/' + qkey).valueChanges();
   }
+
+  updateQuestion(key:string, qkey:string, newquestion: string) {
+    return this.db.object('rooms/'+key+'/questions/'+qkey).update({
+      question: newquestion
+    });
+  }
   
   //ANSWERS
   getAnswers(key: string, qkey: string) {
