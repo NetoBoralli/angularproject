@@ -2,51 +2,58 @@
   <mat-sidenav #sidenav mode="side" opened="true">
 
     <div *ngIf="!layoutComponent.isAnonymous">
-      <mat-card style="margin: 8px">
+      <mat-card class="room-list-card">
         <mat-card-header fxLayoutAlign="center">
           <mat-card-title>
-            <h2>My Rooms</h2>
+            <h2>{{'AddRoom' | translate}}</h2>
           </mat-card-title>
         </mat-card-header>
-        <div *ngFor="let room of rooms" fxLayoutAlign="center">
-
-          <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">
-            {{room.name}}
-          </button>
-        </div>
-      </mat-card>
-    </div>
-    <mat-card style="margin: 8px">
-      <mat-card-header fxLayoutAlign="center">
-        <mat-card-title>
-          <h2>Rooms At</h2>
-        </mat-card-title>
-      </mat-card-header>
-      <div *ngFor="let room of roomsOn" fxLayoutAlign="center">
-        <button mat-button style="font-size : 20px; width: 100%;" (click)="goRoom(room.key)">{{room.name}}</button>
-      </div>
-    </mat-card>
-
-    <div *ngIf="!layoutComponent.isAnonymous">
-      <mat-card style="margin: 8px">
-        <mat-card-header fxLayoutAlign="center">
-          <mat-card-title>
-            <h2>Add Room</h2>
-          </mat-card-title>
-        </mat-card-header>
-        <div fxLayout="row">
+        <div fxLayoutAlign="center" style="padding: 5px;">
           <form [formGroup]="form" (ngSubmit)="insertRoom()">
             <div fxLayout="column">
               <mat-form-field>
-                <input matInput placeholder="Name" formControlName="name">
+                <input matInput #input maxlength="30" placeholder="{{'RoomName' | translate}}" formControlName="name">
+                <mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
               </mat-form-field>
-              <button mat-raised-button color="primary" type="submit">Add Room</button>
+              <button mat-raised-button color="primary" type="submit" style="margin-top: 5px;">{{'AddRoom' | translate}}</button>
             </div>
           </form>
         </div>
       </mat-card>
     </div>
 
+    <div *ngIf="!layoutComponent.isAnonymous">
+      <mat-card class="room-list-card">
+        <mat-card-header fxLayoutAlign="center">
+          <mat-card-title>
+            <h2>{{'MyRooms' | translate}}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <div *ngFor="let room of rooms" fxLayoutAlign="start" class="room-div">
+          <a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]">
+            <p matTooltip={{room.name}} class="rooms-text">
+              {{room.name | truncate:15}}
+            </p>
+          </a>
+        </div>
+      </mat-card>
+    </div>
+    <mat-card class="room-list-card">
+      <mat-card-header fxLayoutAlign="center">
+        <mat-card-title>
+          <h2>{{'Associate' | translate}}</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <div *ngFor="let room of roomsOn" fxLayoutAlign="center" class="room-div">
+        <a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]">
+          <p matTooltip={{room.name}} class="rooms-text">
+            {{room.name | truncate:15}}
+          </p>
+        </a>
+      </div>
+    </mat-card>
+
   </mat-sidenav>
+  <!-- <button (click)="bton()">Bton</button> -->
   <router-outlet></router-outlet>
 </mat-sidenav-container>

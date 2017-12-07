@@ -28,7 +28,7 @@ const appRoutes: Routes = [
 				{ path: 'questions/:qkey', component: QuestionComponent}
 			]}
 		]}
-	] },
+	]},
 
 	// page not found redirect to initial page
 	{ path: '**', redirectTo: '', pathMatch: 'full' }

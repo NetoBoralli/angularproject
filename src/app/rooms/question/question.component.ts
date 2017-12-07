@@ -62,6 +62,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.roomComponent.sidenav.close();
+    this.inscription.unsubscribe();
   }
 
   sortAnswers() {

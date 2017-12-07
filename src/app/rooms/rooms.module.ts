@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpModule } from '@angular/http';
 
 import { MaterialModule } from '../shared/material/material.module';
+import { SharedModule } from './../shared/shared.module';
 import { AppRouting } from '../app.routing';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { RoomListComponent } from './room-list/room-list.component';
@@ -24,7 +25,8 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
     ReactiveFormsModule,
     FlexLayoutModule,
     TranslateModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    SharedModule
   ],
   declarations: [
     RoomListComponent,

@@ -54,7 +54,13 @@
 }
 
 .sidenav {
-  width: 50%;
+  width: 55%;
+}
+
+@media screen and (max-width: 700px) {
+	.sidenav {
+    width: 100%;
+  }
 }
 
 mat-card:hover {

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material';
 import { Subscription } from 'rxjs/Rx';
 
 import { RoomsService } from '../shared/rooms.service';
@@ -14,8 +15,9 @@ import { LayoutComponent } from './../../shared/layout/layout.component';
   templateUrl: './room-list.component.html',
   styleUrls: ['./room-list.component.css']
 })
-export class RoomListComponent implements OnInit {
+export class RoomListComponent implements OnInit{
 
+  @ViewChild('sidenav') sidenav: MatSidenav;
   rooms;
   roomsOn: Array<any>;
   form: FormGroup;
@@ -39,16 +41,16 @@ export class RoomListComponent implements OnInit {
       this.codes = data;
     })
 
-    // this.roomService.getRoomAssociate(this.user.uid).subscribe(data => {
-    //   this.array = data.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    //   this.arrangeRoom(this.array[0].keys);
-    // })
     this.arrangeRoom();
 
     this.form = new FormGroup({
       name: new FormControl(null)
     });
   }
+
+  // bton() {
+  //   this.sidenav.toggle();
+  // }
 
   arrangeRoom() {
     this.roomService.getRoomAssociate(this.user.uid).subscribe(data => {
@@ -79,9 +81,4 @@ export class RoomListComponent implements OnInit {
   verifyCodes(code) {
     return this.codes.findIndex(c => c.code == code) >= 0;
   }
-
-  goRoom(key: string) {
-    this.router.navigate(['rooms/', key]);
-  }
-
 }

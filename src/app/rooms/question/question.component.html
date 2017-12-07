@@ -1,72 +1,81 @@
-<form [formGroup]="form" style="margin: 8px">
-  <div fxLayout="column">
-    <mat-form-field>
-      <textarea matInput placeholder="Question" formControlName="question" [(ngModel)]="question.question"></textarea>
-    </mat-form-field>
-    <div *ngIf="!new && this.roomComponent.owner" fxFlexAlign="end">
-      <button mat-button color="primary" [disabled]="this.form.dirty ?false :true" (click)="updateQuestion()"> Save</button>
-    </div>
-    <div *ngIf="new">
-      <button mat-raised-button color="primary" (click)="insertQuestion()">Add Question</button>
-    </div>
-  </div>
-</form>
+<div class="action-form">
 
-<mat-accordion style="padding: 5px;">
-  <mat-expansion-panel *ngFor="let tag of tags">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <div fxLayoutAlign="center center" fxLayoutGap="0.625em">
-          <!-- <mat-icon color="primary">local_offer</mat-icon> -->
-          <p id="hash">#</p>
-          <span>
-            {{tag.tag ?tag.tag :'[Não Informada]'}}
-          </span>
-        </div>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div *ngFor="let answer of tag.answers" fxLayoutAlign="space-between">
-      <div fxLayout="column">
-        <p class="answer">
-          {{answer.answer}}
-        </p>
-
-        <div fxLayout="row">
-          <div *ngIf="this.roomComponent.owner; else elseBlock">
-            <p *ngIf="!answer.isEditing" class="text-low" (click)="setTF(answer)">
-              {{answer.tag ?'#'+answer.tag :'[Não Informada]'}}
-            </p>
-            <mat-form-field *ngIf="answer.isEditing">
-              <input matInput placeholder="Tag" [(ngModel)]="answer.tag" (keyup.enter)="updateTag(answer)">
-            </mat-form-field>
-          </div>
-
-          <ng-template #elseBlock>
-            <p class="text-low">
-              {{answer.tag ?'#'+answer.tag :'[Não Informada]'}}
-            </p>
-          </ng-template>
-        </div>
-      </div>
-
-      <div fxLayoutAlign="center center">
-        <mat-icon style="color: grey;">person</mat-icon>
-        <span class="text-low">
-          {{answer.owner}}
-        </span>
-      </div>
-    </div>
-  </mat-expansion-panel>
-</mat-accordion>
-
-<div *ngIf="!this.roomComponent.owner">
-  <form [formGroup]="answerForm" style="margin: 8px">
-    <div fxLayout="column">
+  <form [formGroup]="form">
+    <div fxLayout="column" style="padding: 0 16px;">
       <mat-form-field>
-        <input matInput placeholder="Answer" formControlName="answer">
+        <textarea matInput placeholder="{{'Quest' | translate}}" formControlName="question" [(ngModel)]="question.question"></textarea>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addAnswer()">Add Answer</button>
+      <div *ngIf="!new && this.roomComponent.owner" fxFlexAlign="end">
+        <button mat-button color="primary" [disabled]="this.form.dirty ?false :true" (click)="updateQuestion()">{{'Save' | translate }}</button>
+      </div>
+      <div *ngIf="new">
+        <button mat-raised-button color="primary" style="width: 100%;" (click)="insertQuestion()">{{'AddQuest' | translate}}</button>
+      </div>
     </div>
   </form>
+
+  <mat-accordion style="padding: 5px;">
+    <mat-expansion-panel *ngFor="let tag of tags" class="mat-elevation-z0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div fxLayoutAlign="center center" fxLayoutGap="0.625em">
+            <!-- <mat-icon color="primary">local_offer</mat-icon> -->
+            <p id="hash">#</p>
+            <span>
+              {{tag.tag ?tag.tag :'NotInformed' | translate }}
+            </span>
+          </div>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div *ngFor="let answer of tag.answers" fxLayoutAlign="space-between">
+        <div fxLayout="column">
+          <p class="answer">
+            {{answer.answer}}
+          </p>
+
+          <div fxLayout="row">
+            <div *ngIf="this.roomComponent.owner; else elseBlock">
+              <p *ngIf="!answer.isEditing" class="text-low" (click)="setTF(answer)">
+                {{answer.tag ?'#'+answer.tag :'NotInformed' | translate }}
+              </p>
+              <mat-form-field *ngIf="answer.isEditing">
+                <input matInput placeholder="{{'Tag' | translate}}" [(ngModel)]="answer.tag" (keyup.enter)="updateTag(answer)">
+              </mat-form-field>
+            </div>
+
+            <ng-template #elseBlock>
+              <p class="text-low">
+                {{answer.tag ?'#'+answer.tag :'NotInformed' | translate }}
+              </p>
+            </ng-template>
+          </div>
+        </div>
+
+        <div fxLayoutAlign="center center">
+          <mat-icon style="color: grey;">person</mat-icon>
+          <span class="text-low">
+            {{answer.owner}}
+          </span>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- <div class="">
+</div> -->
+
+  <div *ngIf="!this.roomComponent.owner" class="sticky-buttons">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <form [formGroup]="answerForm" style="width: 90%">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="{{'Answer' | translate}}" formControlName="answer">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+            <mat-icon>send</mat-icon>
+          </button>
+        </mat-form-field>
+        <!-- <button mat-raised-button color="primary" (click)="addAnswer()">{{'AddAnswer' | translate}}</button> -->
+      </form>
+    </div>
+  </div>
 </div>

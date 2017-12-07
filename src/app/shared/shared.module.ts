@@ -7,6 +7,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppAuthGuard } from './services/auth/auth-app.guard';
 import { LoginAuthGuard } from './services/auth/auth-login.guard';
 import { DialogsService } from './services/dialog/dialog.service';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
 	imports: [
@@ -17,12 +18,16 @@ import { DialogsService } from './services/dialog/dialog.service';
 	exports: [
 		MaterialModule,
 		LayoutModule,
-		ComponentsModule
+		ComponentsModule,
+		TruncatePipe
 	],
 	providers: [
 		AppAuthGuard,
 		LoginAuthGuard,
 		DialogsService
+	],
+	declarations: [
+		TruncatePipe
 	]
 })
 export class SharedModule { }

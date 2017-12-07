@@ -26,5 +26,15 @@
 	"NotEqualPass": "Senhas não combinam",
 	"MinLength": "A senha deve ter pelo menos seis caracteres",
 	"NoCode": "Sem salas com esse código",
-	"By": "por"
+	"By": "por",
+	"AddQuest": "Adicionar Pergunta",
+	"Quest": "Pergunta",
+	"NotInformed": "[Não Informada]",
+	"Tag": "Etiqueta",
+	"Answer": "Resposta",
+	"AddAnswer": "Adicionar Resposta",
+	"AddRoom": "Adicionar Sala",
+	"RoomName": "Nome da Sala",
+	"MyRooms": "Minhas Salas",
+	"Associate": "Associadas"
 }

@@ -26,5 +26,15 @@
 	"NotEqualPass": "Passwords don't match",
 	"MinLength": "Password must be at least six characters",
 	"NoCode": "No rooms with this code ",
-	"By": "by"
+	"By": "by",
+	"AddQuest": "Add Question",
+	"Quest": "Question",
+	"NotInformed": "[Not Informed]",
+	"Tag": "Tag",
+	"Answer": "Answer",
+	"AddAnswer": "Add Answer",
+	"AddRoom": "Add Room",
+	"RoomName": "Room Name",
+	"MyRooms": "My Rooms",
+	"Associate": "Associate"
 }
