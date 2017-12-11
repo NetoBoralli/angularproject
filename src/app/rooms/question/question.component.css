@@ -15,11 +15,12 @@ p, button {
 }
 
 .sticky-buttons {
-    position: fixed;    
+    position:sticky;    
     bottom: 0;
     background-color: white;
     
     border-top: 1px solid #ddd;
     width: 100% !important;
+    padding: 6px 0;
     /* margin-left: -24px; */
   }

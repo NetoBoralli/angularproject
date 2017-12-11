@@ -27,8 +27,8 @@ export class RoomListComponent implements OnInit{
 
   constructor(
     private roomService: RoomsService,
-    private router: Router,
     private keyService: KeyService,
+    private router: Router,
     private layoutComponent: LayoutComponent
   ) { }
 
@@ -46,6 +46,8 @@ export class RoomListComponent implements OnInit{
     this.form = new FormGroup({
       name: new FormControl(null)
     });
+
+    this.layoutComponent.side.open();
   }
 
   // bton() {

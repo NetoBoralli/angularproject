@@ -70,7 +70,7 @@
       <form [formGroup]="answerForm" style="width: 90%">
         <mat-form-field style="width: 100%">
           <input matInput placeholder="{{'Answer' | translate}}" formControlName="answer">
-          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="addAnswer()">
             <mat-icon>send</mat-icon>
           </button>
         </mat-form-field>

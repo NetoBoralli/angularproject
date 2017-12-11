@@ -1,3 +1,5 @@
+import { RoomsService } from './../../rooms/shared/rooms.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -12,7 +14,9 @@ import { LayoutComponent } from './layout.component';
 		MaterialModule,
 		RouterModule,
 		TranslateModule,
-		FlexLayoutModule
+		FlexLayoutModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	declarations: [
 		LayoutComponent

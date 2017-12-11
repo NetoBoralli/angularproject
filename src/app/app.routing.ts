@@ -16,22 +16,28 @@ import { RoomListComponent } from './rooms/room-list/room-list.component';
 import { QuestionComponent } from './rooms/question/question.component';
 
 const appRoutes: Routes = [
-	{ path: 'login', canActivate: [LoginAuthGuard] , children: [
-		{ path: '', component: LoginComponent},
-		{ path: 'code', component: LoginCodeComponent},
-		{ path: 'signup', component: LoginSignupComponent}
-	]},
-	{ path: '', component: LayoutComponent, canActivate: [AppAuthGuard], children: [
-		{ path: 'rooms', component: RoomListComponent, children: [
-			{ path: ':key', component: RoomComponent, children: [
-				{ path: 'questions', component: QuestionComponent},
-				{ path: 'questions/:qkey', component: QuestionComponent}
-			]}
-		]}
-	]},
+	{
+		path: 'login', canActivate: [LoginAuthGuard], children: [
+			{ path: '', component: LoginComponent },
+			{ path: 'code', component: LoginCodeComponent },
+			{ path: 'signup', component: LoginSignupComponent }
+		]
+	},
+	{
+		path: 'rooms', component: LayoutComponent, canActivate: [AppAuthGuard], children: [
+			// { path: 'rooms', component: RoomListComponent, children: [
+			{
+				path: ':key', component: RoomComponent, children: [
+					{ path: 'questions', component: QuestionComponent },
+					{ path: 'questions/:qkey', component: QuestionComponent }
+				]
+			}
+			// ]}
+		]
+	},
 
 	// page not found redirect to initial page
-	{ path: '**', redirectTo: '', pathMatch: 'full' }
+	{ path: '**', redirectTo: 'rooms', pathMatch: 'full' }
 ];
 
 @NgModule({

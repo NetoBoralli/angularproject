@@ -10,7 +10,7 @@
 	</div>
 	<div fxLayoutAlign="center center">
 		<button mat-button [matMenuTriggerFor]="menu">
-			<span class="text-identify">{{this.u.username}}</span>
+			<span class="text-identify">{{this.user.username}}</span>
 			<mat-icon class="icon">person</mat-icon>
 		</button>
 
@@ -41,4 +41,65 @@
 
 </mat-toolbar>
 
-<router-outlet></router-outlet>
+<mat-sidenav-container style="height: calc(100vh - 64px);">
+	
+	<router-outlet></router-outlet>
+
+	<mat-sidenav #side mode="side" opened="true">
+		<!-- <app-room-list></app-room-list> -->
+		<div *ngIf="!isAnonymous">
+			<mat-card class="room-list-card">
+				<mat-card-header fxLayoutAlign="center">
+					<mat-card-title>
+						<h2>{{'AddRoom' | translate}}</h2>
+					</mat-card-title>
+				</mat-card-header>
+				<div fxLayoutAlign="center" style="padding: 5px;">
+					<form [formGroup]="form" (ngSubmit)="insertRoom()">
+						<div fxLayout="column">
+							<mat-form-field>
+								<input matInput #input maxlength="30" placeholder="{{'RoomName' | translate}}" formControlName="name">
+								<mat-hint align="end">{{input.value?.length || 0}}/30</mat-hint>
+							</mat-form-field>
+							<button mat-raised-button color="primary" type="submit" style="margin-top: 5px;">{{'AddRoom' | translate}}</button>
+						</div>
+					</form>
+				</div>
+			</mat-card>
+		</div>
+
+		<div *ngIf="!isAnonymous">
+			<mat-card class="room-list-card">
+				<mat-card-header fxLayoutAlign="center">
+					<mat-card-title>
+						<h2>{{'MyRooms' | translate}}</h2>
+					</mat-card-title>
+				</mat-card-header>
+				<div *ngFor="let room of rooms" fxLayoutAlign="start" class="room-div">
+					<a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]">
+						<p matTooltip={{room.name}} class="rooms-text">
+							{{room.name.length > 15 ?room.name.substring(0,14)+'...' :room.name}}
+							<!-- {{room.name | truncate:15}} -->
+						</p>
+					</a>
+				</div>
+			</mat-card>
+		</div>
+		<mat-card class="room-list-card">
+			<mat-card-header fxLayoutAlign="center">
+				<mat-card-title>
+					<h2>{{'Associate' | translate}}</h2>
+				</mat-card-title>
+			</mat-card-header>
+			<div *ngFor="let room of roomsOn" fxLayoutAlign="center" class="room-div">
+				<a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]">
+					<p matTooltip={{room.name}} class="rooms-text">
+						{{room.name.length > 15 ?room.name.substring(0,14)+'...' :room.name}}
+						<!-- {{room.name | truncate:15}} -->
+					</p>
+				</a>
+			</div>
+		</mat-card>
+
+	</mat-sidenav>
+</mat-sidenav-container>

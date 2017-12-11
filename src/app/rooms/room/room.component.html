@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container style="height: calc(100vh - 64px)">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2 sidenav">
     <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
       <mat-icon>close</mat-icon>
@@ -6,7 +6,7 @@
     <router-outlet></router-outlet>
   </mat-sidenav>
 
-  <mat-sidenav-content fxLayout="column" fxLayoutAlign="start center" style="min-height: 100vh">
+  <mat-sidenav-content fxLayout="column" fxLayoutAlign="start center">
 
     <div class="center">
       <h3 class="text" fxLayout="column">

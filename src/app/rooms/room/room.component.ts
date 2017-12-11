@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Rx';
 
 import { RoomsService } from './../shared/rooms.service';
 import { MatSidenav } from '@angular/material';
-import { RoomListComponent } from '../room-list/room-list.component';
+import { LayoutComponent } from './../../shared/layout/layout.component';
 
 @Component({
   selector: 'app-room',
@@ -28,7 +28,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     private router: Router,
     private aroute: ActivatedRoute,
     private roomsService: RoomsService,
-    private roomList: RoomListComponent
+    private layoutComponent: LayoutComponent
   ) { }
 
   ngOnInit() {
@@ -72,7 +72,7 @@ export class RoomComponent implements OnInit, OnDestroy {
           this.roomsService.updateRoomAssociate(this.keys[0].key, this.arrayK);
         }
       }
-      this.roomList.arrangeRoom();
+      this.layoutComponent.arrangeRoom();
     })
   }
 
