@@ -61,3 +61,33 @@ h2, button, p {
     padding: 0;
     margin: 0;
 }
+
+.person-div {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+	.side {
+    width: 100%;
+  }
+  .title span {
+      display: none;
+  }
+
+  .title::after {
+    content: "AdS";
+  }
+  
+  .text-identify {
+      display: none;
+  }
+
+  .person-div {
+      display: block;
+  }
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }

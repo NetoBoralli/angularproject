@@ -9,6 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { DialogsService } from '../services/dialog/dialog.service';
 import { RoomListComponent } from '../../rooms/room-list/room-list.component';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { window } from 'rxjs/operator/window';
 
 @Component({
 	selector: 'app-layout',
@@ -90,10 +91,6 @@ export class LayoutComponent implements OnInit {
 	// }
 
 	viewRooms() {
-		// if (this.side.opened)
-		// 	this.router.navigate(['']);
-		// else
-		// 	this.router.navigate(['rooms']);
 		this.side.toggle();
 	}
 
@@ -115,8 +112,8 @@ export class LayoutComponent implements OnInit {
 	}
 
 	insertRoom() {
-		if(!this.form.get('name').value) return null;
-		
+		if (!this.form.get('name').value) return null;
+
 		let code = this.keyService.generateId(6);
 		let inserted = false;
 
@@ -133,5 +130,11 @@ export class LayoutComponent implements OnInit {
 
 	verifyCodes(code) {
 		return this.codes.findIndex(c => c.code == code) >= 0;
+	}
+
+	closeMobile() {
+		let x = document.documentElement;
+		if (x.clientWidth < 900)
+			this.side.close();
 	}
 }

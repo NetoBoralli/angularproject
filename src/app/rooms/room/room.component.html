@@ -1,8 +1,10 @@
 <mat-sidenav-container style="height: calc(100vh - 64px)">
   <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2 sidenav">
-    <a mat-icon-button class="cl-q" (click)="closeSide()" style="margin: 5px;">
-      <mat-icon>close</mat-icon>
-    </a>
+    <div class="question-header">
+      <a mat-icon-button (click)="closeSide()" style="margin: 5px; color: white;">
+        <mat-icon>close</mat-icon>
+      </a>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav>
 

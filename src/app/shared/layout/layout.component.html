@@ -5,7 +5,7 @@
 			<mat-icon class="icon">home</mat-icon>
 		</button>
 	</div>
-	<div fxLayoutAlign="center center">
+	<div class="title" fxLayoutAlign="center center">
 		<span class="title">Angular de Segunda</span>
 	</div>
 	<div fxLayoutAlign="center center">
@@ -15,6 +15,11 @@
 		</button>
 
 		<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
+			<div mat-menu-item class="person-div">
+				<mat-icon>person</mat-icon>
+				<span>{{this.user.username}}</span>
+			</div>
+
 			<button mat-menu-item [matMenuTriggerFor]="subMenu">
 				<mat-icon>language</mat-icon>
 				<span>{{'ChangeLanguage' | translate}}</span>
@@ -42,10 +47,10 @@
 </mat-toolbar>
 
 <mat-sidenav-container style="height: calc(100vh - 64px);">
-	
+
 	<router-outlet></router-outlet>
 
-	<mat-sidenav #side mode="side" opened="true">
+	<mat-sidenav #side mode="side" opened="true" class="side">
 		<!-- <app-room-list></app-room-list> -->
 		<div *ngIf="!isAnonymous">
 			<mat-card class="room-list-card">
@@ -76,7 +81,7 @@
 					</mat-card-title>
 				</mat-card-header>
 				<div *ngFor="let room of rooms" fxLayoutAlign="start" class="room-div">
-					<a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]">
+					<a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]" (click)="closeMobile()">
 						<p matTooltip={{room.name}} class="rooms-text">
 							{{room.name.length > 15 ?room.name.substring(0,14)+'...' :room.name}}
 							<!-- {{room.name | truncate:15}} -->
@@ -92,7 +97,7 @@
 				</mat-card-title>
 			</mat-card-header>
 			<div *ngFor="let room of roomsOn" fxLayoutAlign="center" class="room-div">
-				<a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]">
+				<a routerLinkActive="active-link" [routerLink]="['/rooms/'+ room.key]" (click)="closeMobile()">
 					<p matTooltip={{room.name}} class="rooms-text">
 						{{room.name.length > 15 ?room.name.substring(0,14)+'...' :room.name}}
 						<!-- {{room.name | truncate:15}} -->

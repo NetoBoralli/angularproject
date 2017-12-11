@@ -5,13 +5,6 @@
     z-index: 1;
   }
 
-.cl-q {
-    /* position: fixed;
-    left: 20px;
-    top: 20px; */
-    /* background-color: red; */
-    color: red;
-}
 
 ::-webkit-scrollbar {
   width: 0px;
@@ -65,4 +58,9 @@
 
 mat-card:hover {
   background-color: #e6e6e6;
+}
+
+.question-header {
+  background-color: #6877ca;
+  margin-bottom: 8px;
 }
