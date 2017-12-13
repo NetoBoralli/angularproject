@@ -95,6 +95,9 @@ export class LayoutComponent implements OnInit {
 	}
 
 	changeLanguage(lang) {
+		if(this.translate.currentLang == lang){
+			return null
+		}
 		this.translate.use(lang).subscribe((res) => {
 			localStorage.setItem('preferedLang', this.translate.currentLang);
 		});
