@@ -52,7 +52,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
     });
 
     this.form = new FormGroup({
-      question: new FormControl({value: '', disabled: !this.roomComponent.owner})
+      question: new FormControl({ value: '', disabled: !this.roomComponent.owner })
     });
 
     this.answerForm = new FormGroup({
@@ -108,11 +108,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.roomsService.setAnswer(this.key, this.qkey, this.answerForm.get('answer').value, this.user.username)
       .then(res => {
         this.answerForm.reset();
-      }); 
+      });
   }
 
-  updateQuestion(){
-    if(!this.form.get('question').value)
+  updateQuestion() {
+    if (!this.form.get('question').value)
       return null;
     this.roomsService.updateQuestion(this.key, this.qkey, this.form.get('question').value);
   }

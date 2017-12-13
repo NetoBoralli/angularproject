@@ -91,9 +91,9 @@ export class RoomComponent implements OnInit, OnDestroy {
     this.router.navigate(['rooms/' + this.key]);
   }
 
-  questionDetail(qkey: string) {
+  questionDetail(quest) {
     this.sidenav.open();
-    this.router.navigate(['rooms/' + this.key + '/questions/' + qkey]);
+    this.router.navigate(['rooms/' + this.key + '/questions/' + quest.key]);
   }
 
   ngOnDestroy() {

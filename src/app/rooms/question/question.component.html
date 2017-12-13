@@ -65,8 +65,8 @@
   <!-- <div class="">
 </div> -->
 
-  <div *ngIf="!this.roomComponent.owner" class="sticky-buttons">
-    <div fxLayout="row" fxLayoutAlign="center center">
+  <div class="sticky-buttons">
+    <div *ngIf="!this.roomComponent.owner" fxLayout="row" fxLayoutAlign="center center">
       <form [formGroup]="answerForm" style="width: 90%">
         <mat-form-field style="width: 100%">
           <input matInput placeholder="{{'Answer' | translate}}" formControlName="answer">

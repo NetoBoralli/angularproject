@@ -24,3 +24,11 @@ p, button {
     padding: 6px 0;
     /* margin-left: -24px; */
   }
+
+  mat-expansion-panel {
+      border-bottom: 1px solid #bfbfbf;
+  }
+
+  mat-expansion-panel:last-child {
+      border: none;
+  }

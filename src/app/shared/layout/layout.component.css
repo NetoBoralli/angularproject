@@ -32,6 +32,12 @@ mat-sidenav {
 	width: 20%;
 }
 
+.mat-sidenav-content {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    transform: none !important;
+  }
+
 a {
     color: black;
     text-decoration: none; /* no underline */

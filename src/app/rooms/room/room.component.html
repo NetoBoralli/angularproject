@@ -1,5 +1,5 @@
 <mat-sidenav-container style="height: calc(100vh - 64px)">
-  <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z2 sidenav">
+  <mat-sidenav #sidenav align="end" mode="side" class="mat-elevation-z16 sidenav">
     <div class="question-header">
       <a mat-icon-button (click)="closeSide()" style="margin: 5px; color: white;">
         <mat-icon>close</mat-icon>
@@ -18,8 +18,8 @@
         </span>
       </h3>
 
-      <div fxLayout="row" fxLayoutWrap>
-        <mat-card class="card" *ngFor="let quest of questions" (click)="questionDetail(quest.key)">
+      <div fxLayout="row" fxLayoutWrap fxLayoutAlign="space-around">
+        <mat-card class="card" *ngFor="let quest of questions" (click)="questionDetail(quest)">
           <mat-card-header>
             <mat-card-title class="text">
               {{quest.question}}
@@ -31,7 +31,7 @@
 
 
     <div *ngIf="owner">
-      <button mat-fab class="add-q" (click)="action()" color="primary">
+      <button mat-fab class="mat-elevation-z6 add-q" (click)="action()" color="primary">
         <mat-icon>add</mat-icon>
       </button>
     </div>
